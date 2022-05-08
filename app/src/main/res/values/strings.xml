@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Prueba_TattooAlly</string>
+    <string name="title_inicio">Inicio</string>
+    <string name="title_explorar">Explorar</string>
+    <string name="title_nuevo">Nueva publicación</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_perfil">Perfil</string>
+    <!--splash activity-->
+    <string name="login_txt">Iniciar sesión</string>
+    <string name="registro_txt">Registrarse</string>
+    <!--login activity-->
+    <string name="nom_usu_txt">Usuario</string>
+    <string name="nom_usu_placeholder">Nickname o correo electrónico</string>
+    <string name="pass_usu_txt">Contraseña</string>
+    <string name="pass_usu_placeholder">***************</string>
+    <!--registro activity-->
+    <string name="registro_txt_2">Registro</string>
+    <string name="nick_txt">Nickname</string>
+    <string name="email_txt">Correo electrónico</string>
+    <string name="pass_usu_txt_2">Repite la contraseña</string>
+    <!--publicacion-->
+    <string name="nickname_txt">Nickname</string>
+    <string name="categoria_txt">Categoría</string>
+    <string name="descripcion_txt">Descripción</string>
+    <string name="localizacion_txt">Localización</string>
+    <!--nuevo-->
+    <string name="anadir_txt">Añadir una foto</string>
+    <string name="pie_foto_txt">Añadir descripción</string>
+    <string name="publicar_btn">Publicar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
