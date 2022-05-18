@@ -1,5 +1,8 @@
 package com.example.prueba_tattooally;
 
+import static com.example.prueba_tattooally.login.utils.conectarDB;
+import static com.example.prueba_tattooally.login.utils.convertirContrasena;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,8 +10,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import android.widget.Toast;
+
+import com.example.prueba_tattooally.login.LoginException;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 /**
@@ -38,8 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                valor_contrasena = String.valueOf(contrasena.getText());
-                lanzarInicio(null);
+                iniciarSesion(String.valueOf(usuario.getText()), String.valueOf(contrasena.getText()));
             }
         });
     }
@@ -49,26 +57,27 @@ public class LoginActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     };
-    public String convertirContrasena(String contrasena){
-        MessageDigest md = null;
+
+    public void iniciarSesion(String usuario, String contrasena) {
+        Connection conexion = null;
+        Statement statement = null;
+        String contrasenaCifrada = convertirContrasena(contrasena);
+        String querySQL = "SELECT * FROM Usuario WHERE email = " + usuario; //+ " and contrasena = " + contrasena;
         try {
-            md = MessageDigest.getInstance("SHA-256");
-        }
-        catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
+            conexion = conectarDB();
+            ResultSet resultSet = statement.executeQuery(querySQL);
+            statement = conexion.createStatement();
+
+            if (resultSet.next()) {
+                Toast.makeText(this, "Logeo correcto", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Logeo incorrecto", Toast.LENGTH_LONG).show();
+            }
+        } catch (LoginException e) {
+            Toast.makeText(this, e.getMensajeError(), Toast.LENGTH_LONG).show();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
 
-        byte[] hash = md.digest(contrasena.getBytes());
-        StringBuilder sb = new StringBuilder();
-
-        for(byte b : hash) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString();
-    }
-    public boolean comprobarDatos(String usuario, String contrasena){
-        System.out.println();
-        return false;
     }
 }
