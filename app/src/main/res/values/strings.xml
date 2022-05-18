@@ -27,6 +27,18 @@
     <string name="anadir_txt">Añadir una foto</string>
     <string name="pie_foto_txt">Añadir descripción</string>
     <string name="publicar_btn">Publicar</string>
+    <!--explorar-->
+    <string name="busqueda_txt">Buscar</string>
+    <string name="categorias_txt">Categorías</string>
+    <string name="blackword_txt">Blackwork</string>
+    <string name="oldschool_txt">Old School</string>
+    <string name="neotradicional_txt">Neotradicional</string>
+    <string name="dotwork_txt">Dotwork</string>
+    <string name="blkgrey_txt">Black and Grey</string>
+    <string name="acuarela_txt">Acuarela</string>
+    <string name="japones_txt">Japonés</string>
+    <string name="realista_txt">Realista</string>
+    <string name="ornamental_txt">Ornamental</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
