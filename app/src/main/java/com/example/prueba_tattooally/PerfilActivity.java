@@ -13,13 +13,12 @@ import com.example.prueba_tattooally.databinding.FragmentExplorarBinding;
 
 public class PerfilActivity extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+
     private FragmentExplorarBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+
 
         binding = FragmentExplorarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
