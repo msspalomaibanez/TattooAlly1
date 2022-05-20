@@ -47,7 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iniciarSesion(String.valueOf(usuario.getText()), String.valueOf(contrasena.getText()));
+                lanzarInicio(null);
+               // iniciarSesion(String.valueOf(usuario.getText()), String.valueOf(contrasena.getText()));
             }
         });
     }
