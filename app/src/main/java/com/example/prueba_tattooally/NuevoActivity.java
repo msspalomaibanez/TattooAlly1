@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally.ui.home;
+package com.example.prueba_tattooally;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,16 +13,16 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.prueba_tattooally.R;
-import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
+import com.example.prueba_tattooally.databinding.FragmentNuevoBinding;
 
-public class HomeFragment extends Fragment {
+public class NuevoActivity extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentNuevoBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentNuevoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         return root;

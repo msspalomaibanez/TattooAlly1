@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally;
+package com.example.prueba_tattooally.login;
 
 import static com.example.prueba_tattooally.login.utils.conectarDB;
 import static com.example.prueba_tattooally.login.utils.convertirContrasena;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.prueba_tattooally.MainActivity;
+import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.login.LoginException;
 
 import java.sql.Connection;
