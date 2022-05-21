@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.prueba_tattooally.login.LoginActivity;
+
 
 /**
  * Clase que aparecerá por defecto como primera pantalla donde se le pedirá al usuario que se registre o que inicie sesión
