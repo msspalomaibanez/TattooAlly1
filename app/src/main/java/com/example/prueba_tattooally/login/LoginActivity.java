@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally;
+package com.example.prueba_tattooally.login;
 
 import static com.example.prueba_tattooally.login.utils.conectarDB;
 import static com.example.prueba_tattooally.login.utils.convertirContrasena;
@@ -20,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.prueba_tattooally.MainActivity;
+import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.login.LoginException;
 
 import java.sql.Connection;
@@ -69,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(!response.isEmpty()){
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(LoginActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
