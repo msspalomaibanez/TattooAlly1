@@ -1,0 +1,1 @@
+Poner todos los archivos de esta carpeta en una carpeta en el htdocs del XAMPP llamada tattooally_php.

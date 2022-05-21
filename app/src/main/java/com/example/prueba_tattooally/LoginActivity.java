@@ -3,6 +3,7 @@ package com.example.prueba_tattooally;
 import static com.example.prueba_tattooally.login.utils.conectarDB;
 import static com.example.prueba_tattooally.login.utils.convertirContrasena;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,12 +13,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.prueba_tattooally.login.LoginException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -47,37 +57,41 @@ public class LoginActivity extends AppCompatActivity {
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iniciarSesion(String.valueOf(usuario.getText()), String.valueOf(contrasena.getText()));
+                validarUsuario("http://10.0.2.2/tattooally_php/validar_usuario.php");
             }
         });
     }
 
-    public void lanzarInicio(View view) {
-        System.out.println(convertirContrasena(valor_contrasena));
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-    };
 
-    public void iniciarSesion(String usuario, String contrasena) {
-        Connection conexion = null;
-        Statement statement = null;
-        String contrasenaCifrada = convertirContrasena(contrasena);
-        String querySQL = "SELECT * FROM Usuario WHERE email = " + usuario; //+ " and contrasena = " + contrasena;
-        try {
-            conexion = conectarDB();
-            ResultSet resultSet = statement.executeQuery(querySQL);
-            statement = conexion.createStatement();
-
-            if (resultSet.next()) {
-                Toast.makeText(this, "Logeo correcto", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Logeo incorrecto", Toast.LENGTH_LONG).show();
+    public void validarUsuario(String URL){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(!response.isEmpty()){
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(LoginActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
+                }
             }
-        } catch (LoginException e) {
-            Toast.makeText(this, e.getMensajeError(), Toast.LENGTH_LONG).show();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+            }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                Toast.makeText(LoginActivity.this, "Error, enviando datos del error...", Toast.LENGTH_SHORT).show();
+/*V.Desarrollo*/ System.out.println(error.toString());
+            }
+            }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String,String>();
+                parametros.put("usuario",usuario.getText().toString());
+                parametros.put("password",convertirContrasena(contrasena.getText().toString()));
+                return parametros;
+            }
+        };
 
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

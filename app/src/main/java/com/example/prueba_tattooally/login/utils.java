@@ -28,19 +28,23 @@ public class utils {
     }
 
     public static Connection  conectarDB() throws LoginException {
-        Connection conexion = null;
+
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-             conexion = DriverManager.getConnection("jdbc:mysql://192.168.1.128:3306/tattooally","tattoally","123abc.");
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://10.0.2.2:3306/tattooally?serverTimezone=UTC","tattooally","123abc.");
 
             return conexion;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         catch (SQLException e){
+            System.out.println(e.toString());
+            throw new LoginException(e.getMessage());
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
-            throw new LoginException("Se ha producido un fallo en la conexión con la base de datos.");
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
-        return conexion;
+        return null;
     }
 }
