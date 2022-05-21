@@ -9,8 +9,8 @@
     <string name="login_txt">Iniciar sesión</string>
     <string name="registro_txt">Registrarse</string>
     <!--login activity-->
-    <string name="nom_usu_txt">Usuario</string>
-    <string name="nom_usu_placeholder">Nickname o correo electrónico</string>
+    <string name="nom_usu_txt">Nombre</string>
+    <string name="nom_usu_placeholder">Nombre y Apellidos</string>
     <string name="pass_usu_txt">Contraseña</string>
     <string name="pass_usu_placeholder">***************</string>
     <!--registro activity-->

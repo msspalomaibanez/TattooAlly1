@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prueba_tattooally.login.LoginActivity;
+import com.example.prueba_tattooally.registro.RegistroActivity;
 
 
 /**
