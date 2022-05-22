@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally;
+package com.example.prueba_tattooally.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import com.example.prueba_tattooally.R;
 
 public class PostsAdapter extends BaseAdapter {
 
