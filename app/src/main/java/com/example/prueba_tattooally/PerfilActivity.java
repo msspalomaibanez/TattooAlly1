@@ -10,17 +10,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.prueba_tattooally.databinding.FragmentExplorarBinding;
+import com.example.prueba_tattooally.databinding.FragmentPerfilBinding;
 
 public class PerfilActivity extends Fragment {
 
 
-    private FragmentExplorarBinding binding;
+    private FragmentPerfilBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        binding = FragmentExplorarBinding.inflate(inflater, container, false);
+        binding = FragmentPerfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
 

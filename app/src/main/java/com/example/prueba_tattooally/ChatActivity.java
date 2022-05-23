@@ -8,22 +8,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.prueba_tattooally.databinding.FragmentChatBinding;
 import com.example.prueba_tattooally.databinding.FragmentExplorarBinding;
 
 public class ChatActivity extends Fragment {
 
-    private FragmentExplorarBinding binding;
+    private FragmentChatBinding binding;
     private String appID = "APP_ID";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-        binding = FragmentExplorarBinding.inflate(inflater, container, false);
+        binding = FragmentChatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //inicioChat();
         return root;
     }
+
 
    /* private void inicioChat() {
         CometChat.init(this, appID,appSettings, new CometChat.CallbackListener<String>() {
