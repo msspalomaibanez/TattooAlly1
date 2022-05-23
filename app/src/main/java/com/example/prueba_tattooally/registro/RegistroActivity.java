@@ -62,7 +62,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onClick(View view) {
                 registrarUsuario("http://10.0.2.2/tattooally_php/registrar_usuario.php");
                 ProgressDialog dialog = ProgressDialog.show(RegistroActivity.this, "",
-                        "Loading. Please wait...", true);
+                        "Cargando...", true);
             }
         });
 
