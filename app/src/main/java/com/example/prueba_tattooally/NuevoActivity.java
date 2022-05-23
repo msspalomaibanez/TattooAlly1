@@ -15,6 +15,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentNuevoBinding;
 
+/**
+ * Clase en la que se mostrará un formulario para subir una publicación a la plataforma
+ *
+ * Funcionalidades:
+ * - Subir unaq publicación a la plataforma
+ */
+
 public class NuevoActivity extends Fragment {
 
     private FragmentNuevoBinding binding;

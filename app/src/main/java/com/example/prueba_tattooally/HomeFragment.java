@@ -15,6 +15,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
 
+/**
+ * Clase en la que se mostrarán las publicaciones de otros usuarios de la app en formato de listado y desde donde
+ * habrá un menú inferior con la navegación a todas las diferentes pantallas de la app
+ *
+ * Funcionalidades:
+ * - Visualización de publicaciones
+ * - Navegación a otras pantallas con el menú inferior
+ */
+
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;

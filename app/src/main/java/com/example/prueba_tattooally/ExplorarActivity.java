@@ -10,6 +10,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.prueba_tattooally.databinding.FragmentExplorarBinding;
 
+/**
+ * Clase en la que se mostrará una barra de búsqueda para buscar usuarios o categorías seguido de un listado
+ * de categorias frecuentes
+ *
+ * Funcionalidades:
+ * - Buscar usuarios y categorias
+ */
+
 public class ExplorarActivity extends Fragment {
 
     private FragmentExplorarBinding binding;

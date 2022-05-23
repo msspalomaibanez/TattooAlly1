@@ -11,6 +11,14 @@ import androidx.fragment.app.Fragment;
 import com.example.prueba_tattooally.databinding.FragmentChatBinding;
 import com.example.prueba_tattooally.databinding.FragmentExplorarBinding;
 
+/**
+ * Clase en la que se mostrará un listado de usuarios con los que se ha tenido un intercambio de mensajes
+ *
+ * Funcionalidades:
+ * - Ingresar en alguna de las conversaciones para visualizar el intercambio de mensajes
+ * - Navegación a otras pantallas con el menú inferior
+ */
+
 public class ChatActivity extends Fragment {
 
     private FragmentChatBinding binding;

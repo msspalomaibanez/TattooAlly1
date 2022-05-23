@@ -12,6 +12,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.prueba_tattooally.databinding.FragmentExplorarBinding;
 import com.example.prueba_tattooally.databinding.FragmentPerfilBinding;
 
+/**
+ * Clase en la que se mostrará el perfil del usuario con información sobre sus publicaciones
+ *
+ * Funcionalidades:
+ * - Visualización de publicaciones
+ * - Editar información del perfil personal
+ * - Eliminar publicaciones
+ */
+
 public class PerfilActivity extends Fragment {
 
 
