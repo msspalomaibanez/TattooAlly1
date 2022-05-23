@@ -13,6 +13,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.prueba_tattooally.databinding.ActivityMainBinding;
 
+/**
+ * Clase en la que se gestionarán las funcionalidades o características comunes de las diferentes opciones
+ * del menú de navegación
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -41,5 +45,10 @@ public class MainActivity extends AppCompatActivity {
         imagen1.setImageResource(R.drawable.tattooally);
     }
 
+    //Sobreescribimos el siguiente método para que el usuario, una vez haya completado el ingreso tanto por login como por registro,
+    //no pueda volver a la pantalla anterior
+    @Override
+    public void onBackPressed() {
 
+    }
 }
