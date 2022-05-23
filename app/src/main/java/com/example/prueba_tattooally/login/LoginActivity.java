@@ -4,6 +4,7 @@ import static com.example.prueba_tattooally.utils.convertirContrasena;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 validarUsuario("http://10.0.2.2/tattooally_php/validar_usuario.php");
+                ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "",
+                        "Loading. Please wait...", true);
             }
         });
     }

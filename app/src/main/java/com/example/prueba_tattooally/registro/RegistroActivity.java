@@ -2,6 +2,7 @@ package com.example.prueba_tattooally.registro;
 
 import static com.example.prueba_tattooally.utils.convertirContrasena;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -60,6 +61,8 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 registrarUsuario("http://10.0.2.2/tattooally_php/registrar_usuario.php");
+                ProgressDialog dialog = ProgressDialog.show(RegistroActivity.this, "",
+                        "Loading. Please wait...", true);
             }
         });
 
