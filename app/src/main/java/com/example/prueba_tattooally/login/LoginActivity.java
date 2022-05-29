@@ -53,9 +53,10 @@ public class LoginActivity extends AppCompatActivity {
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validarUsuario("http://10.0.2.2/tattooally_php/validar_usuario.php");
-                ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "",
-                        "Cargando...", true);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                //validarUsuario("http://10.0.2.2/tattooally_php/validar_usuario.php");
+                //dialogoCarga();
             }
         });
     }
@@ -91,5 +92,13 @@ public class LoginActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    public void dialogoCarga() {
+        ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+        if (!isFinishing()){
+            dialog.show(LoginActivity.this, "", "Cargando...", true);
+        }
+
     }
 }
