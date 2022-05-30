@@ -34,12 +34,15 @@ public class utils {
      */
     public boolean validarNombre (String nombre){
         boolean aux = true;
+        //Si el nombre está vacío será falso
         if (nombre.isEmpty()) {
             aux = false;
         }
-        if (nombre.length() < 1 || nombre.length() > 150) {
+        //Si el nombre no está entre 3 y 12 caracteres será falso
+        if (nombre.length() < 3 || nombre.length() > 12) {
             aux = false;
         }
+        //Si el nombre contiene algún dígito o algún espacio será falso
         for (char c : nombre.toCharArray()) {
             if (Character.isDigit(c) || (!Character.isLetter(c) && c != ' ')) {
                 aux = false;
@@ -56,10 +59,12 @@ public class utils {
      */
     public boolean validarNickname (String nickname) {
         boolean aux = true;
+        //Si el nickname está vacío será falso
         if (nickname.isEmpty()) {
             aux = false;
         }
-        if (nickname.length() < 1 || nickname.length() > 150) {
+        //Si el nickname no está entre 3 y 12 caracteres será falso
+        if (nickname.length() < 3 || nickname.length() > 12) {
             aux = false;
         }
         return aux;
@@ -73,10 +78,11 @@ public class utils {
     public boolean validarEmail (String email) {
         String pattern = "^(.+)@(\\S+)$";
         boolean aux = true;
+        //Si el email está vacío será falso
         if(email.isEmpty()) {
             aux = false;
         }
-
+        //Si el email no es igual al patrón que hemos establecido previamente será falso
         if (email != pattern) {
             aux = false;
         }
@@ -94,7 +100,7 @@ public class utils {
         if(pass.isEmpty()) {
             aux = false;
         }
-        //Si la contraseá no tiene 8 caracteres será falso
+        //Si la contraseña no tiene 8 caracteres será falso
         if (pass.length() != 8) {
             aux = false;
         }
