@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        //escondemos la barra superior de la interfaz
         getSupportActionBar().hide();
 
         inicio = findViewById(R.id.inicio_btn);
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         contrasena = findViewById(R.id.nick_edittxt);
         valor_contrasena = String.valueOf(contrasena.getText());
         atras = findViewById(R.id.back);
+
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 //dialogoCarga();
             }
         });
+        //añadimos la funcionalidad de volver a la anterior actividad al puplsar en la flecha añadida en la interfaz
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +74,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Método por el cual se lleva a cabo la comprobación de los datos de un usuario ya existente en la base de datos.
+     * Hacemos una petición a la base de datos: en caso de que los valores introducidos coincidan con los de la base de datos
+     * se lanzará la actividad de inicio, en caso de haber errores se avisará al usuario del error y se almacenará
+     * dicho error en un archivo log
+     * @param URL en la que se encuentra el archivo php con el login de los datos
+     */
     public void validarUsuario(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL
                 , new Response.Listener<String>() {
@@ -104,6 +113,10 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    /**
+     * Método por el cual ejecutaremos un diálogo emergente como pantalla de carga para mostrarle al usuario que
+     * se está ejecutando una petición a la base de datos
+     */
     public void dialogoCarga() {
         ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
         if (!isFinishing()){
