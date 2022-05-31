@@ -46,7 +46,7 @@ public class ChatActivity extends Fragment {
    private void inicioChat() {
        AppSettings appSettings=new AppSettings.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
 
-       CometChat.init(this, appID,appSettings, new CometChat.CallbackListener<String>() {
+       CometChat.init(this.getContext(), appID,appSettings, new CometChat.CallbackListener<String>() {
            @Override
            public void onSuccess(String successMessage) {
 //               Log.d(TAG, "Initialization completed successfully");
