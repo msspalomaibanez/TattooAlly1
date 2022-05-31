@@ -35,7 +35,7 @@ public class ExplorarActivity extends Fragment {
         View root = binding.getRoot();
 
         //aqui da el problema java.lang.NullPointerException: Attempt to invoke virtual method 'android.view.View android.view.View.findViewById(int)' on a null object reference
-        buscar_btn = getView().findViewById(R.id.buscar_btn);
+        buscar_btn = (Button) root.findViewById(R.id.buscar_btn);
         buscar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,9 +58,9 @@ public class ExplorarActivity extends Fragment {
      */
     public void cambioFragment(){
         Fragment fragment = new BusquedaActivity();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.navigation_explorar, fragment);
+        fragmentTransaction.replace(((ViewGroup)getView().getParent()).getId(), fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
