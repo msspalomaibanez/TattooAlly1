@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/comfortaa"
             android:text="@string/nickname_txt"
             android:textColor="@color/white" />
     </LinearLayout>
@@ -31,6 +32,7 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa"
         android:text="@string/localizacion_txt" />
 
     <ImageView
@@ -44,12 +46,14 @@
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa"
         android:text="@string/categoria_txt" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa"
         android:text="@string/descripcion_txt" />
 
     <androidx.cardview.widget.CardView

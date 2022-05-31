@@ -19,6 +19,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="40px"
         android:backgroundTint="#C4C4C4"
+        android:fontFamily="@font/comfortaa"
         android:text="@string/login_txt"
         android:textColor="@color/black" />
 
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/comfortaa"
         android:text="@string/registro_txt"
         android:textColor="@color/black" />
 </LinearLayout>
