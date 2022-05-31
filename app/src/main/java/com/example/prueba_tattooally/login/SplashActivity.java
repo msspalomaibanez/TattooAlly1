@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally;
+package com.example.prueba_tattooally.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.login.LoginActivity;
 import com.example.prueba_tattooally.registro.RegistroActivity;
 

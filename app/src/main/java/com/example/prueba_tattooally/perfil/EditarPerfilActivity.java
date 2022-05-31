@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally;
+package com.example.prueba_tattooally.perfil;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally;
+package com.example.prueba_tattooally.chat;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.prueba_tattooally.databinding.FragmentChatBinding;
-import com.example.prueba_tattooally.databinding.FragmentExplorarBinding;
 
 import com.cometchat.pro.core.AppSettings;
 import com.cometchat.pro.core.CometChat;
