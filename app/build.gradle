@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.prueba_tattooally"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -47,6 +47,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.cardview:cardview:1.0.0"
     //libreria para el chat
-    //implementation 'com.cometchat:pro-android-chat-sdk:3.0.1'
-    //implementation project(path: ':uikit')
+
+    implementation 'com.cometchat:pro-android-chat-sdk:3.0.1'
+    implementation 'com.cometchat:pro-android-calls-sdk:2.1.1'
+//    implementation project(path: ':uikit')
 }
