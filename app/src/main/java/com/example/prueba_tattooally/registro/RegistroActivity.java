@@ -64,8 +64,11 @@ public class RegistroActivity extends AppCompatActivity {
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registrarUsuario("http://10.0.2.2/tattooally_php/registrar_usuario.php");
-                dialogoAyuda();
+                boolean aux = validarCampos();
+                registrarUsuario("http://10.0.2.2/tattooally_php/registrar_usuario.php", aux);
+                if (aux) {
+                    dialogoCarga();
+                }
             }
         });
         atras.setOnClickListener(new View.OnClickListener() {
@@ -76,22 +79,14 @@ public class RegistroActivity extends AppCompatActivity {
         });
     }
 
-    public void registrarUsuario(String URL){
+    public void registrarUsuario(String URL, boolean valido){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(!response.equals(1)){ //AÑADIR VERIFICACIÓN VALIDACIONES AQUÍ
-                    String nom = nombre.getText().toString();
-                    String nick = nickname.getText().toString();
-                    String em = email.getText().toString();
-                    String pass = contrasena1.getText().toString();
-                    if(utils.validarNombre(nom) && utils.validarNickname(nick) && utils.validarEmail(em) && utils.validarPassword(pass)) {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
-                    } else {
-                        dialogoAyuda();
-                    };
                 }else{
                     Toast.makeText(RegistroActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
                 }
@@ -140,9 +135,22 @@ public class RegistroActivity extends AppCompatActivity {
         if (!isFinishing()){
             dialog.show(RegistroActivity.this, "", "Cargando...", true);
         }
-
     }
 
+    public boolean validarCampos() {
+        boolean aux = true;
+        String nom = nombre.getText().toString();
+        String nick = nickname.getText().toString();
+        String em = email.getText().toString();
+        String pass = contrasena1.getText().toString();
+        if(!(utils.validarNombre(nom) && utils.validarNickname(nick) && utils.validarEmail(em) && utils.validarPassword(pass))) {
+            return aux;
+        } else {
+            aux = false;
+            dialogoAyuda();
+        }
+        return aux;
+    }
 
 
 
