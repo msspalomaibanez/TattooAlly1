@@ -18,6 +18,14 @@
     <string name="nick_txt">Nickname</string>
     <string name="email_txt">Correo electrónico</string>
     <string name="pass_usu_txt_2">Repite la contraseña</string>
+    <string name="info_registro">Info</string>
+    <string name="alert_registro">Error</string>
+    <string name="msg_registro">
+        - El nombre tendrá entre 3 y 12 letras sin números \n
+        - El nickname tendrá entre 3 y 12 letras \n
+        - El correo electrónico deberá tener la siguiente estructura __@__.__ \n
+        - La contraseña deberá tener 8 dígitos sólo numérica</string>
+    <string name="opcion_aceptar">Vale</string>
     <!--publicacion-->
     <string name="nickname_txt">Nickname</string>
     <string name="categoria_txt">Categoría</string>

@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText contrasena;
     String valor_contrasena;
     View atras;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

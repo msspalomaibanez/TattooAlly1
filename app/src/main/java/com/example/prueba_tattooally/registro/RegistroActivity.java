@@ -1,8 +1,10 @@
 package com.example.prueba_tattooally.registro;
 
-import static com.example.prueba_tattooally.utils.convertirContrasena;
+import static com.example.prueba_tattooally.utils.*;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.prueba_tattooally.MainActivity;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.login.LoginActivity;
+import com.example.prueba_tattooally.utils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,8 +65,7 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 registrarUsuario("http://10.0.2.2/tattooally_php/registrar_usuario.php");
-                ProgressDialog dialog = ProgressDialog.show(RegistroActivity.this, "",
-                        "Cargando...", true);
+                dialogoAyuda();
             }
         });
         atras.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +82,16 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(!response.equals(1)){ //AÑADIR VERIFICACIÓN VALIDACIONES AQUÍ
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                    String nom = nombre.getText().toString();
+                    String nick = nickname.getText().toString();
+                    String em = email.getText().toString();
+                    String pass = contrasena1.getText().toString();
+                    if(utils.validarNombre(nom) && utils.validarNickname(nick) && utils.validarEmail(em) && utils.validarPassword(pass)) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        dialogoAyuda();
+                    };
                 }else{
                     Toast.makeText(RegistroActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
                 }
@@ -109,9 +119,29 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
 
+    public void dialogoAyuda() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
+        builder.setTitle(R.string.alert_registro);
+        builder.setMessage(R.string.msg_registro);
+        builder.setCancelable(false);
 
+        builder.setPositiveButton(R.string.opcion_aceptar, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                dialogo1.dismiss();
+            }
+        });
 
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
+    public void dialogoCarga() {
+        ProgressDialog dialog = new ProgressDialog(RegistroActivity.this);
+        if (!isFinishing()){
+            dialog.show(RegistroActivity.this, "", "Cargando...", true);
+        }
+
+    }
 
 
 

@@ -32,7 +32,7 @@ public class utils {
      * @param nombre el nombre a comprobar
      * @return booleano que será true de ser válido o false de no serlo
      */
-    public boolean validarNombre (String nombre){
+    public static boolean validarNombre (String nombre){
         boolean aux = true;
         //Si el nombre está vacío será falso
         if (nombre.isEmpty()) {
@@ -57,7 +57,7 @@ public class utils {
      * @param nickname el nombre a comprobar
      * @return booleano que será true de ser válido o false de no serlo
      */
-    public boolean validarNickname (String nickname) {
+    public static boolean validarNickname (String nickname) {
         boolean aux = true;
         //Si el nickname está vacío será falso
         if (nickname.isEmpty()) {
@@ -75,7 +75,7 @@ public class utils {
      * @return booleano que será true de ser válido o false de no serlo
      */
 
-    public boolean validarEmail (String email) {
+    public static boolean validarEmail (String email) {
         String pattern = "^(.+)@(\\S+)$";
         boolean aux = true;
         //Si el email está vacío será falso
@@ -94,7 +94,7 @@ public class utils {
      * @param pass la contraseña a comprobar
      * @return booleano que será true de ser válido o false de no serlo
      */
-    public boolean validarPassword (String pass) {
+    public static boolean validarPassword (String pass) {
         boolean aux = true;
         //Si la contraseña está vacía será falso
         if(pass.isEmpty()) {
