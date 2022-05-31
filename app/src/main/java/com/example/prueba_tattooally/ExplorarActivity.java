@@ -34,12 +34,12 @@ public class ExplorarActivity extends Fragment {
         binding = FragmentExplorarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //aqui da el problema java.lang.NullPointerException: Attempt to invoke virtual method 'android.view.View android.view.View.findViewById(int)' on a null object reference
         buscar_btn = (Button) root.findViewById(R.id.buscar_btn);
         buscar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cambioFragment();
+                Fragment fragment = new BusquedaActivity();
+                cambioFragment(fragment);
             }
         });
         return root;
@@ -56,8 +56,7 @@ public class ExplorarActivity extends Fragment {
      * Método por el cual haremos la transición del fragmento actual al fragmento que le metamos
      * por parámetro
      */
-    public void cambioFragment(){
-        Fragment fragment = new BusquedaActivity();
+    public void cambioFragment(Fragment fragment){
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(((ViewGroup)getView().getParent()).getId(), fragment);
