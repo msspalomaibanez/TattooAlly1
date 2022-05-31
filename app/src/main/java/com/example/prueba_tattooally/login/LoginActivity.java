@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText usuario;
     EditText contrasena;
     String valor_contrasena;
+    View atras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         usuario = findViewById(R.id.nombre_edittxt);
         contrasena = findViewById(R.id.nick_edittxt);
         valor_contrasena = String.valueOf(contrasena.getText());
+        atras = findViewById(R.id.back);
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +60,12 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 //validarUsuario("http://10.0.2.2/tattooally_php/validar_usuario.php");
                 //dialogoCarga();
+            }
+        });
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

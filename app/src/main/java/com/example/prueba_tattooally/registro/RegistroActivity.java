@@ -41,6 +41,7 @@ public class RegistroActivity extends AppCompatActivity {
     EditText contrasena1;
     EditText contrasena2;
     Button registro;
+    View atras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class RegistroActivity extends AppCompatActivity {
         contrasena1 = findViewById(R.id.pass_edittxt);
         contrasena2 = findViewById(R.id.pass_edittxt_2);
         registro = findViewById(R.id.registro_btn);
-
+        atras = findViewById(R.id.back);
 
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +66,12 @@ public class RegistroActivity extends AppCompatActivity {
                         "Cargando...", true);
             }
         });
-
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public void registrarUsuario(String URL){
