@@ -36,7 +36,7 @@ public class PerfilActivity extends Fragment {
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        editar_btn = (Button) root.findViewById(R.id.editar_btn);
+        editar_btn = (Button) root.findViewById(R.id.editar_perfil_btn);
         editar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
