@@ -53,6 +53,8 @@
     <string name="seguidores_txt">0 \n seguidores</string>
     <string name="seguidos_txt">0 \n seguidos</string>
     <string name="editar_perfil_btn">editar perfil</string>
+    <!--editar perfil-->
+    <string name="editar_txt">Editar perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
