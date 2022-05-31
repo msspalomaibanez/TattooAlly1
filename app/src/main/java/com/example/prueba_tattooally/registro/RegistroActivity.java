@@ -50,10 +50,10 @@ public class RegistroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registro);
+        //escondemos la barra superior de la interfaz
         getSupportActionBar().hide();
 
         nombre = findViewById(R.id.nombre_edittxt);
-
         nickname = findViewById(R.id.nick_edittxt);
         email = findViewById(R.id.email_edittxt);
         contrasena1 = findViewById(R.id.pass_edittxt);
@@ -64,13 +64,17 @@ public class RegistroActivity extends AppCompatActivity {
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //recogemos dentro de la variable aux el resultado de las validaciones
                 boolean aux = validarCampos();
-                registrarUsuario("http://10.0.2.2/tattooally_php/registrar_usuario.php", aux);
+                //en caso de que las validaciones se hayan completado sin ningún problema se ejecutarán
+                //los métodos de registro y del diálogo de carga
                 if (aux) {
+                    registrarUsuario("http://10.0.2.2/tattooally_php/registrar_usuario.php");
                     dialogoCarga();
                 }
             }
         });
+        //añadimos la funcionalidad de volver a la anterior actividad al puplsar en la flecha añadida en la interfaz
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +83,14 @@ public class RegistroActivity extends AppCompatActivity {
         });
     }
 
-    public void registrarUsuario(String URL, boolean valido){
+    /**
+     * Método por el cual se lleva a cabo el registro de un usuario a la base de datos. Tras comprobar la validez de
+     * los valores introducidos, hacemos una petición a la base de datos: en caso de que no haya errores, se lanzará la
+     * actividad de inicio, en caso de haber errores se avisará al usuario del error y se almacenará dicho error en un
+     * archivo log
+     * @param URL en la que se encuentra el archivo php con el registro de los datos a la base de datos
+     */
+    public void registrarUsuario(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL
                 , new Response.Listener<String>() {
             @Override
@@ -114,6 +125,10 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Método por el cual ejecutaremos un diálogo emergente con la información correspondiente a los requisitos
+     * de los campos del formulario
+     */
     public void dialogoAyuda() {
         AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
         builder.setTitle(R.string.alert_registro);
@@ -130,6 +145,10 @@ public class RegistroActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Método por el cual ejecutaremos un diálogo emergente como pantalla de carga para mostrarle al usuario que
+     * se está ejecutando una petición a la base de datos
+     */
     public void dialogoCarga() {
         ProgressDialog dialog = new ProgressDialog(RegistroActivity.this);
         if (!isFinishing()){
@@ -137,6 +156,10 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método en el cual recogemos los valores de los campos del formulario y comprobamos que cumplan los requisitos
+     * @return aux booleano que devolverá true en caso de que se cumplan los requisitos y false en caso de que no
+     */
     public boolean validarCampos() {
         boolean aux = true;
         String nom = nombre.getText().toString();
