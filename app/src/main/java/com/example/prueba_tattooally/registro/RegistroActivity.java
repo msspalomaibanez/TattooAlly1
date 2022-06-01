@@ -21,9 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.prueba_tattooally.MainActivity;
+import com.example.prueba_tattooally.inicio.MainActivity;
 import com.example.prueba_tattooally.R;
-import com.example.prueba_tattooally.login.LoginActivity;
 import com.example.prueba_tattooally.utils;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally;
+package com.example.prueba_tattooally.nuevo;
 
 import static android.app.Activity.RESULT_OK;
 import static com.example.prueba_tattooally.utils.convertirContrasena;

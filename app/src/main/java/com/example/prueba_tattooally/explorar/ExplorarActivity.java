@@ -1,4 +1,4 @@
-package com.example.prueba_tattooally;
+package com.example.prueba_tattooally.explorar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,46 +7,44 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 
+import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentExplorarBinding;
-import com.example.prueba_tattooally.databinding.FragmentPerfilBinding;
+import com.example.prueba_tattooally.explorar.BusquedaActivity;
 
 /**
- * Clase en la que se mostrará el perfil del usuario con información sobre sus publicaciones
+ * Clase en la que se mostrará una barra de búsqueda para buscar usuarios o categorías seguido de un listado
+ * de categorias frecuentes
  *
  * Funcionalidades:
- * - Visualización de publicaciones
- * - Editar información del perfil personal
- * - Eliminar publicaciones
+ * - Buscar usuarios y categorias
  */
 
-public class PerfilActivity extends Fragment {
+public class ExplorarActivity extends Fragment {
 
-
-    private FragmentPerfilBinding binding;
-    Button editar_btn;
+    private FragmentExplorarBinding binding;
+    Button buscar_btn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-
-        binding = FragmentPerfilBinding.inflate(inflater, container, false);
+        binding = FragmentExplorarBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        editar_btn = (Button) root.findViewById(R.id.editar_btn);
-        editar_btn.setOnClickListener(new View.OnClickListener() {
+        buscar_btn = (Button) root.findViewById(R.id.buscar_btn);
+        buscar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new EditarPerfilActivity();
+                Fragment fragment = new BusquedaActivity();
                 cambioFragment(fragment);
             }
         });
-
         return root;
+
     }
 
     @Override
