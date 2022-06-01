@@ -64,7 +64,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/descripcionNuevo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -105,7 +105,7 @@
                 android:textSize="16sp" />
 
             <Spinner
-                android:id="@+id/estilos"
+                android:id="@+id/desplegableEstilos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
