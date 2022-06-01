@@ -1,5 +1,9 @@
 package com.example.prueba_tattooally;
 
+import android.graphics.Bitmap;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -113,5 +117,13 @@ public class utils {
 
         }
         return aux;
+    }
+
+    public static String BitMapAString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imagen = Base64.encodeToString(b, Base64.DEFAULT);
+        return imagen;
     }
 }
