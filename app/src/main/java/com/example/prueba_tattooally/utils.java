@@ -179,7 +179,6 @@ public class utils {
                 String estilo = objeto.getString("estilo");
 
                 Publicacion nuevaPublicacion = new Publicacion(id,imagen,descripcion,localizacion,estilo);
-                System.out.println(nuevaPublicacion);
                 publicaciones.add(nuevaPublicacion);
             } catch (JSONException e) {
                 e.printStackTrace();
