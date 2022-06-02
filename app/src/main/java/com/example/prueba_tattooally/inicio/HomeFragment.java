@@ -1,19 +1,31 @@
 package com.example.prueba_tattooally.inicio;
 
+import static com.example.prueba_tattooally.utils.JSONArrayAPublicaciones;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.GridView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.prueba_tattooally.Models.Publicacion;
 import com.example.prueba_tattooally.R;
+import com.example.prueba_tattooally.adapter.PostsAdapter;
 import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Clase en la que se mostrarán las publicaciones de otros usuarios de la app en formato de listado y desde donde
@@ -33,7 +45,10 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        /*EMULADOR*/
+        obtenerPublicaciones("http://10.0.2.2/tattooally_php/obtener_publicaciones.php");
+        /*DISPOSITIVOS MOVILES*/
+        //obtenerPublicaciones("http://192.168.1.138/tattooally_php/obtener_publicaciones.php");
         return root;
     }
 
@@ -41,5 +56,38 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void obtenerPublicaciones(String URL) {
+        JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest( URL
+                , new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                ArrayList<Publicacion> publicaciones = JSONArrayAPublicaciones(response);
+                mostrarPublicaciones(publicaciones);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(),"No se ha podido recuperar las publicaciones!",Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(jsonArrayRequest);
+
+    }
+
+    public void mostrarPublicaciones(ArrayList<Publicacion> publicaciones){
+        GridView gridView = getActivity().findViewById(R.id.gridViewHome);
+        PostsAdapter postsAdapter = new PostsAdapter(getContext(),publicaciones);
+        gridView.setAdapter(postsAdapter);
     }
 }
