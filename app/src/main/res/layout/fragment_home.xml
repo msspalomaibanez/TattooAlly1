@@ -15,131 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <GridView
+            android:id="@+id/gridViewHome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#2C2C2C">
-
-                        <ImageView
-                            android:id="@+id/img_perfil_1"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_weight="0.1"
-                            tools:srcCompat="@drawable/tattoo" />
-
-                        <TextView
-                            android:id="@+id/nick_txt_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/nickname_txt"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/localizacion_txt_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/localizacion_txt" />
-
-                    <ImageView
-                        android:id="@+id/img_publi_1"
-                        android:layout_width="400dp"
-                        android:layout_height="400dp"
-                        android:layout_gravity="center"
-                        tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                    <TextView
-                        android:id="@+id/categoria_txt_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/categoria_txt" />
-
-                    <TextView
-                        android:id="@+id/descripcion_txt_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/descripcion_txt" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#2C2C2C">
-
-                        <ImageView
-                            android:id="@+id/img_perfil_2"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_weight="0.1"
-                            tools:srcCompat="@drawable/tattoo" />
-
-                        <TextView
-                            android:id="@+id/nick_txt_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/nickname_txt"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/localizacion_txt_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/localizacion_txt" />
-
-                    <ImageView
-                        android:id="@+id/img_publi_2"
-                        android:layout_width="400dp"
-                        android:layout_height="400dp"
-                        android:layout_gravity="center"
-                        tools:srcCompat="@drawable/tattoo" />
-
-                    <TextView
-                        android:id="@+id/categoria_txt_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/categoria_txt" />
-
-                    <TextView
-                        android:id="@+id/descripcion_txt_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/descripcion_txt" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+        </GridView>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

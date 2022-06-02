@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        imagen1 = findViewById(R.id.img_publi_1);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -44,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        imagen1.setImageResource(R.drawable.tattoo);
-        imagen1 = findViewById(R.id.img_publi_2);
-        imagen1.setImageResource(R.drawable.tattooally);
     }
 
     //Sobreescribimos el siguiente método para que el usuario, una vez haya completado el ingreso tanto por login como por registro,
