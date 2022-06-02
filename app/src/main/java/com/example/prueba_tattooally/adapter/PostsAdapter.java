@@ -6,41 +6,61 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.prueba_tattooally.Models.Publicacion;
 import com.example.prueba_tattooally.R;
+
+import java.util.ArrayList;
 
 public class PostsAdapter extends BaseAdapter {
 
     private Context contexto;
+    private final ArrayList<Publicacion> publicaciones;
 
-    public PostsAdapter(Context contexto) {
+
+    public PostsAdapter(Context contexto, ArrayList<Publicacion> publicaciones) {
         this.contexto = contexto;
+        this.publicaciones = publicaciones;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return publicaciones.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return publicaciones.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.fragment_home, null, true);
+            convertView = inflater.inflate(R.layout.publicacion, null, true);
         }
 
-        ImageView imageView = convertView.findViewById(R.id.img_perfil_1);
+        ImageView imageView = convertView.findViewById(R.id.fotoPerfilPublicacion);
+        imageView.setImageResource(R.drawable.tattooally);
 
-        return null;
+        imageView = convertView.findViewById(R.id.imagenPublicacion);
+        imageView.setImageBitmap(publicaciones.get(position).getFoto());
+
+        TextView texto = convertView.findViewById(R.id.localizacionPublicacion);
+        texto.setText(publicaciones.get(position).getLocalizacion());
+
+        texto = convertView.findViewById(R.id.categoriaPublicacion);
+        texto.setText(publicaciones.get(position).getEstilo());
+
+        texto = convertView.findViewById(R.id.descripcionPublicacion);
+        texto.setText(publicaciones.get(position).getDescripcion());
+
+        return convertView;
     }
 }
