@@ -52,7 +52,7 @@ public class RegistroActivity extends AppCompatActivity {
         //escondemos la barra superior de la interfaz
         getSupportActionBar().hide();
 
-        nombre = findViewById(R.id.nombre_edittxt);
+        nombre = findViewById(R.id.loginNickname);
         nickname = findViewById(R.id.nick_edittxt);
         email = findViewById(R.id.email_edittxt);
         contrasena1 = findViewById(R.id.pass_edittxt);
