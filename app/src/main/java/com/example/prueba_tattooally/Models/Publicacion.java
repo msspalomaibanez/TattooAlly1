@@ -2,7 +2,9 @@ package com.example.prueba_tattooally.Models;
 
 import android.graphics.Bitmap;
 
-public class Publicacion {
+import java.io.Serializable;
+
+public class Publicacion implements Serializable {
     private int idPublicacion;
     private Bitmap foto;
     private String descripcion;
@@ -28,7 +30,7 @@ public class Publicacion {
         this.idPublicacion = idPublicacion;
     }
 
-    public Bitmap getFoto() {
+    public  Bitmap getFoto() {
         return foto;
     }
 
@@ -36,7 +38,7 @@ public class Publicacion {
         this.foto = foto;
     }
 
-    public String getDescripcion() {
+    public  String getDescripcion() {
         return descripcion;
     }
 
@@ -44,7 +46,7 @@ public class Publicacion {
         this.descripcion = descripcion;
     }
 
-    public String getLocalizacion() {
+    public  String getLocalizacion() {
         return localizacion;
     }
 
@@ -52,7 +54,7 @@ public class Publicacion {
         this.localizacion = localizacion;
     }
 
-    public String getEstilo() {
+    public  String getEstilo() {
         return estilo;
     }
 

@@ -12,12 +12,15 @@
         android:background="#2C2C2C"
         android:gravity="center">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fotoPerfilPublicacion"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_weight="0.1"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
             tools:srcCompat="@drawable/tattoo" />
 
         <TextView
@@ -55,7 +58,7 @@
             app:srcCompat="@drawable/icon_location" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/localizacionPublicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -67,14 +70,14 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagenPublicacion"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_gravity="center"
         tools:srcCompat="@drawable/tattoo" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/categoriaPublicacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient_txt"
@@ -87,7 +90,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/descripcionPublicacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
