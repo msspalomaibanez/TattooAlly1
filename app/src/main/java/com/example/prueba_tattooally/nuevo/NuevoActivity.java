@@ -9,6 +9,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -41,6 +43,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentNuevoBinding;
+import com.example.prueba_tattooally.utils;
 
 
 import java.io.IOException;
@@ -81,7 +84,10 @@ public class NuevoActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 if(imagen.toString() != null && !descripcionImagen.getText().toString().isEmpty() && !localizacionNuevo.getSelectedItem().equals("") && !estiloNuevo.getSelectedItem().equals("")){
+                    /*EMULADOR*/
                     crearPublicacion("http://10.0.2.2/tattooally_php/crear_publicacion.php");
+                    /*DISPOSITIVOS MOVILES*/
+                    //crearPublicacion("http://192.168.1.138/tattooally_php/crear_publicacion.php");
                }else{
                     Toast.makeText(getContext(), "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
