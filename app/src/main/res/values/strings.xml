@@ -56,7 +56,7 @@
     <!--editar perfil-->
     <string name="editar_txt">Editar perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="msg_modo_oscuro">La funcionalidad del modo oscuro aún no ha sido implementada</string>
 
     <string-array name="provincias">
         <item>\u00c1lava</item>
