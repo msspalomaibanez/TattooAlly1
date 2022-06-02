@@ -1,15 +1,24 @@
 package com.example.prueba_tattooally;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+
+import com.example.prueba_tattooally.Models.Publicacion;
+
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.util.ArrayList;
+
 
 public class utils {
     public static String convertirContrasena(String contrasena){
@@ -119,11 +128,70 @@ public class utils {
         return aux;
     }
 
+
+    /**
+     * Método por el cual convertimos un objeto de tipo Bitmap a String
+     * @param bitmap el objeto de tipo bitmap a parsear a String en base64
+     * @return objeto de tipo String
+     */
     public static String BitMapAString(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] b = baos.toByteArray();
         String imagen = Base64.encodeToString(b, Base64.DEFAULT);
         return imagen;
     }
+
+    /**
+     * Método por el cual convertimos un String de tipo encoded base64 a Bitmap
+     * @param encodedString el objeto de tipo String  que será casteado a un objeto de tipo Bitmap
+     * @return objeto Bitmap
+     */
+    public static Bitmap StringABitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0,
+                    encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    /**
+     * Método por el cual recibimos un JSONArray, recorremos este JSONArray y devolvemos sus objetos
+     * mediante un ArrayList de publicaciones
+     * @param jsonArray El array JSON a recorrer
+     * @return Devuelve un ArrayList de publicaciones
+     */
+    public static ArrayList<Publicacion> JSONArrayAPublicaciones(JSONArray jsonArray){
+        ArrayList<Publicacion> publicaciones = new ArrayList<Publicacion>();
+
+        for (int x = 0; x < jsonArray.length();x++){
+
+            try {
+                JSONObject objeto = jsonArray.getJSONObject(x);
+                int id = objeto.getInt("id");
+                Bitmap imagen = utils.StringABitMap(objeto.getString("imagen"));
+                String descripcion = objeto.getString("descripcion");
+                String localizacion = objeto.getString("localizacion");
+                String estilo = objeto.getString("estilo");
+
+                Publicacion nuevaPublicacion = new Publicacion(id,imagen,descripcion,localizacion,estilo);
+                System.out.println(nuevaPublicacion);
+                publicaciones.add(nuevaPublicacion);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return publicaciones;
+
+    }
+
+
+
+
 }
