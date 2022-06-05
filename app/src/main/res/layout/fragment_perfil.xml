@@ -98,22 +98,25 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/gestoActualizarPerfil"
-        android:layout_width="404dp"
-        android:layout_height="433dp"
+        android:layout_width="match_parent"
+        android:layout_height="427dp"
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintVertical_bias="0.043">
 
 
         <GridView
             android:id="@+id/grid_publis_perfil"
             android:layout_width="match_parent"
             android:layout_height="435dp"
+            android:layout_marginTop="10dp"
             android:numColumns="3"
             android:padding="20dp"
-            android:verticalSpacing="70dp" />
+            android:verticalSpacing="40dp" />
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

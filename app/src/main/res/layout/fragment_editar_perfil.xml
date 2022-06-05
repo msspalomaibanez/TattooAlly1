@@ -102,7 +102,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/edit_pass_edittxt"
+                android:id="@+id/editar_pass_edittxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
@@ -111,6 +111,20 @@
                 android:hint="@string/pass_usu_placeholder"
                 android:inputType="textPassword"
                 android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/editar_foto_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa"
+                android:text="@string/anadir_txt"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/img_editar_perfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <Button
                 android:id="@+id/editar_btn"
