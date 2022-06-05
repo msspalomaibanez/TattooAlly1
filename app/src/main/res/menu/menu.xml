@@ -6,6 +6,10 @@
         android:id="@+id/modo_oscuro"
         app:showAsAction="collapseActionView"/>
     <item
+        android:title="Ayuda"
+        android:id="@+id/ayuda"
+        app:showAsAction="collapseActionView"/>
+    <item
         android:title="Cerrar sesión"
         android:id="@+id/cerrar_sesion"
         app:showAsAction="collapseActionView"/>

@@ -127,4 +127,12 @@
         <item>Realista</item>
         <item>Ornamental</item>
     </string-array>
+    
+    <string name="ayuda_txt">
+         - Inicio. Se mostrarán las publicaciones de aquellos usuarios a los que se siga \n \n
+         - Explorar. Se podrán buscar usuarios y publicaciones filtradas por estilo y localización \n \n
+         - Nuevo. Se podrá subir una publicación asociada al perfil seleccionando una imagen desde la galería \n \n
+         - Chat. Se podrá comunicar con otros usuarios de la plataforma a través de un chat \n \n
+         - Perfil. Se podrá ver las publicaciones del propio usuario además de editar los datos del perfil
+    </string>
 </resources>

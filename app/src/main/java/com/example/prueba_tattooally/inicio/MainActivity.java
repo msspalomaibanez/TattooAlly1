@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -52,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        navView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Se ha cerrado su sesión", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
     }
 
     //Sobreescribimos el siguiente método para que el usuario, una vez haya completado el ingreso tanto por login como por registro,
@@ -87,6 +96,22 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
                 break;
 
+            case R.id.ayuda:
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                builder1.setTitle(R.string.info_registro);
+                builder1.setMessage(R.string.ayuda_txt);
+                builder1.setCancelable(false);
+
+                builder1.setPositiveButton(R.string.opcion_aceptar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        dialogo1.dismiss();
+                    }
+                });
+
+                AlertDialog dialog1 = builder1.create();
+                dialog1.show();
+                break;
+
             case R.id.cerrar_sesion:
                 Toast.makeText(this, "Se ha cerrado su sesión", Toast.LENGTH_SHORT)
                         .show();
@@ -99,4 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+
 }
