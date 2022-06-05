@@ -2,8 +2,6 @@ package com.example.prueba_tattooally.inicio;
 
 import static com.example.prueba_tattooally.utils.JSONArrayAPublicaciones;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +10,20 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.prueba_tattooally.Models.MiSingleton;
 import com.example.prueba_tattooally.Models.Publicacion;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.adapter.publicacionesInicioAdapter;
 import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
-import com.example.prueba_tattooally.perfil.PerfilActivity;
 
 import org.json.JSONArray;
 
@@ -44,6 +43,11 @@ import java.util.Map;
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     static ArrayList<Publicacion> publicaciones;
+    public static final String TAG = "solicitudPublicaciones";
+    JsonArrayRequest jsonArrayRequest;
+    RequestQueue requestQueue;
+    SwipeRefreshLayout gestoActualizar;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,17 +55,29 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
+        if(publicaciones == null){
+            /*EMULADOR*/
+            //obtenerPublicaciones("http://10.0.2.2/tattooally_php/obtener_publicaciones.php");
+            /*DISPOSITIVOS MOVILES*/
+            obtenerPublicaciones("http://192.168.1.138/tattooally_php/obtener_publicaciones.php");
 
+        }else{
+            mostrarPublicaciones(publicaciones);
+        }
 
+        gestoActualizar = root.findViewById(R.id.gestoActualizarHome);
+        gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                /*EMULADOR*/
+                //obtenerPublicaciones("http://10.0.2.2/tattooally_php/obtener_publicaciones.php");
+                /*DISPOSITIVOS MOVILES*/
+                obtenerPublicaciones("http://192.168.1.138/tattooally_php/obtener_publicaciones.php");
+
+            }
+        });
         return root;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        /*EMULADOR*/
-        obtenerPublicaciones("http://10.0.2.2/tattooally_php/obtener_publicaciones.php");
-        /*DISPOSITIVOS MOVILES*/
-        //obtenerPublicaciones("http://192.168.1.138/tattooally_php/obtener_publicaciones.php");
     }
 
     @Override
@@ -70,25 +86,30 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(requestQueue != null){
+            requestQueue.cancelAll(TAG);
+        }
+    }
+
     public void obtenerPublicaciones(String URL) {
-        JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest( URL
+         jsonArrayRequest  = new JsonArrayRequest( URL
                 , new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                  publicaciones = JSONArrayAPublicaciones(response);
-                PerfilActivity fragment = new PerfilActivity();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("publicaciones", publicaciones);
-                fragment.setArguments(bundle);
-                mostrarPublicaciones(publicaciones);
-
+                 mostrarPublicaciones(publicaciones);
+                gestoActualizar.setRefreshing(false);
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity().getBaseContext(),"No se ha podido recuperar las publicaciones!",Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getActivity().getBaseContext(),"No se han podido recuperar las publicaciones!",Toast.LENGTH_SHORT).show();
+                System.out.println(error.getMessage());
+                gestoActualizar.setRefreshing(false);
             }
         }) {
             @Override
@@ -97,8 +118,12 @@ public class HomeFragment extends Fragment {
                 return parametros;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(jsonArrayRequest);
+        jsonArrayRequest.setTag(TAG);
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MiSingleton.getInstance(getContext()).addToRequestQueue(jsonArrayRequest);
 
     }
 

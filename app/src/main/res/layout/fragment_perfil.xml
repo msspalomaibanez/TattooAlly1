@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".perfil.PerfilActivity">
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -17,103 +18,104 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/perfil_img"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="0.1"
+                    app:civ_border_color="#FF000000"
+                    app:civ_border_width="2dp"
+                    tools:srcCompat="@drawable/tattoo" />
+
+                <TextView
+                    android:id="@+id/perfil_nickname_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa"
+                    android:gravity="center"
+                    android:text="@string/nickname_txt"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/perfil_img"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="0.1"
-                        app:civ_border_color="#FF000000"
-                        app:civ_border_width="2dp"
-                        tools:srcCompat="@drawable/tattoo" />
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/perfil_nickname_txt"
-                        android:layout_width="match_parent"
+                        android:id="@+id/num_publis_txt"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/comfortaa"
                         android:gravity="center"
-                        android:text="@string/nickname_txt"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:text="@string/publicaciones_txt"
+                        android:textSize="16sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/num_seguidores_txt"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/num_publis_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/comfortaa"
-                            android:gravity="center"
-                            android:text="@string/publicaciones_txt"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/num_seguidores_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/comfortaa"
-                            android:gravity="center"
-                            android:text="@string/seguidores_txt"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/num_seguidos_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/comfortaa"
-                            android:gravity="center"
-                            android:text="@string/seguidos_txt"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/editar_perfil_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/comfortaa"
-                        android:text="@string/editar_perfil_btn" />
+                        android:gravity="center"
+                        android:text="@string/seguidores_txt"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/num_seguidos_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/comfortaa"
+                        android:gravity="center"
+                        android:text="@string/seguidos_txt"
+                        android:textSize="16sp" />
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/editar_perfil_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/editar_perfil_btn" />
             </LinearLayout>
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:background="?android:attr/listDivider" />
-
-            <GridView
-                android:id="@+id/grid_publis_perfil"
-                android:layout_width="match_parent"
-                android:layout_height="435dp"
-                android:numColumns="3"
-                android:padding="20dp"
-                android:verticalSpacing="70dp"
-                />
-
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/gestoActualizarPerfil"
+        android:layout_width="404dp"
+        android:layout_height="433dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+
+        <GridView
+            android:id="@+id/grid_publis_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="435dp"
+            android:numColumns="3"
+            android:padding="20dp"
+            android:verticalSpacing="70dp" />
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

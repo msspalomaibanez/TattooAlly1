@@ -1,6 +1,7 @@
 package com.example.prueba_tattooally.nuevo;
 
 
+import static androidx.navigation.fragment.NavHostFragment.findNavController;
 import static com.example.prueba_tattooally.utils.BitMapAString;
 
 
@@ -32,6 +33,12 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 
 import com.android.volley.AuthFailureError;
@@ -42,8 +49,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prueba_tattooally.R;
+import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
 import com.example.prueba_tattooally.databinding.FragmentNuevoBinding;
+import com.example.prueba_tattooally.inicio.HomeFragment;
 import com.example.prueba_tattooally.utils;
+import com.google.android.material.navigation.NavigationView;
 
 
 import java.io.IOException;
@@ -68,12 +78,13 @@ public class NuevoActivity extends Fragment {
     Spinner localizacionNuevo;
     Spinner estiloNuevo;
     Button publicar;
+    View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentNuevoBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        root = binding.getRoot();
         anadirImagenBtn = root.findViewById(R.id.anadirImagenBtn);
         previewImagen = root.findViewById(R.id.previewImagen);
         descripcionImagen = root.findViewById(R.id.descripcionNuevo);
@@ -83,11 +94,9 @@ public class NuevoActivity extends Fragment {
         publicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(imagen.toString() != null && !descripcionImagen.getText().toString().isEmpty() && !localizacionNuevo.getSelectedItem().equals("") && !estiloNuevo.getSelectedItem().equals("")){
-                    /*EMULADOR*/
-                    crearPublicacion("http://10.0.2.2/tattooally_php/crear_publicacion.php");
-                    /*DISPOSITIVOS MOVILES*/
-                    //crearPublicacion("http://192.168.1.138/tattooally_php/crear_publicacion.php");
+
+                if(imagen != null && !descripcionImagen.getText().toString().isEmpty() && !localizacionNuevo.getSelectedItem().equals("") && !estiloNuevo.getSelectedItem().equals("")){
+                    crearPublicacion("http://192.168.1.138/tattooally_php/crear_publicacion.php");
                }else{
                     Toast.makeText(getContext(), "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
@@ -110,8 +119,6 @@ public class NuevoActivity extends Fragment {
             }
         };
         anadirImagenBtn.setOnClickListener(subidaImagen);
-
-
 
          miActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -157,6 +164,11 @@ public class NuevoActivity extends Fragment {
             public void onResponse(String response) {
                 if(response.trim().equalsIgnoreCase("publicado")){
                     Toast.makeText(getContext(),"Publicación creada!",Toast.LENGTH_SHORT).show();
+                    FragmentManager fragmentManager = getParentFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(((ViewGroup)getView().getParent()).getId(), new NuevoActivity());
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
 
                 }else{
                     Toast.makeText(getContext(),"No se ha podido publicar!",Toast.LENGTH_SHORT).show();
@@ -167,7 +179,8 @@ public class NuevoActivity extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(),"No se ha podido publicar!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getBaseContext(),"No se ha podido publicar!",Toast.LENGTH_SHORT).show();
+                System.out.println(error.getMessage());
 
             }
         }) {

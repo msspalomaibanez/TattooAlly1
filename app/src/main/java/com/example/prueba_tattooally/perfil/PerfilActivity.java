@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -27,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.prueba_tattooally.Models.MiSingleton;
 import com.example.prueba_tattooally.Models.Publicacion;
 import com.example.prueba_tattooally.Models.Usuario;
 import com.example.prueba_tattooally.R;
@@ -61,11 +63,18 @@ public class PerfilActivity extends Fragment {
 
 
     private FragmentPerfilBinding binding;
+    public static final String TAG = "solicitudPerfil";
+    RequestQueue requestQueue;
+    JsonArrayRequest jsonArrayRequest;
     Button editar_btn;
     CircleImageView imagen_perfil;
     TextView nickname_perfil;
     TextView num_seguidores_txt;
     TextView num_seguidos_txt;
+    TextView num_publis_txt;
+    static Usuario perfil;
+    SwipeRefreshLayout gestoActualizar;
+    ArrayList<Publicacion> publicacionesPerfil;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -80,6 +89,17 @@ public class PerfilActivity extends Fragment {
         nickname_perfil = root.findViewById(R.id.perfil_nickname_txt);
         num_seguidores_txt = root.findViewById(R.id.num_seguidores_txt);
         num_seguidos_txt = root.findViewById(R.id.num_seguidos_txt);
+        num_publis_txt = root.findViewById(R.id.num_publis_txt);
+
+        requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
+
+        gestoActualizar = root.findViewById(R.id.gestoActualizarPerfil);
+        gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                cargarPerfil("http://192.168.1.138/tattooally_php/mostrar_perfil.php");
+            }
+        });
 
         editar_btn = (Button) root.findViewById(R.id.editar_perfil_btn);
         editar_btn.setOnClickListener(new View.OnClickListener() {
@@ -89,27 +109,27 @@ public class PerfilActivity extends Fragment {
                 cambioFragment(fragment);
             }
         });
+        if(perfil == null){
+            cargarPerfil("http://192.168.1.138/tattooally_php/mostrar_perfil.php");
+        }else{
+
+            publicacionesPerfil = HomeFragment.getPublicaciones();
+            for(int x = 0; x < publicacionesPerfil.size();x++){
+                if(publicacionesPerfil.get(x).getIdUsuario() != 1){
+                    publicacionesPerfil.remove(x);
+                }
+            }
+            mostrarPerfil(perfil);
+            mostrarPublicacionesPerfil(publicacionesPerfil);
+        }
+
 
 
 
         return root;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        /*EMULADOR*/
-        cargarPerfil("http://10.0.2.2/tattooally_php/mostrar_perfil.php");
-        /*DISPOSITIVOS MOVILES*/
-        //obtenerPublicaciones("http://192.168.1.138/tattooally_php/mostrar_perfil.php");
 
-        ArrayList<Publicacion> publicaciones = HomeFragment.getPublicaciones();
-        for(int x = 0; x < publicaciones.size();x++){
-            if(publicaciones.get(x).getIdUsuario() != 1){
-                publicaciones.remove(x);
-            }
-        }
-        mostrarPublicacionesPerfil(publicaciones);
-    }
 
 
 
@@ -119,22 +139,36 @@ public class PerfilActivity extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(requestQueue != null){
+            requestQueue.cancelAll(TAG);
+        }
+    }
+
     private void cargarPerfil(String URL){
-        JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest( URL
+         jsonArrayRequest  = new JsonArrayRequest( URL
                 , new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 JSONArray arrayJSON = response;
-                System.out.println(arrayJSON);
                 try {
                     JSONObject objeto = arrayJSON.getJSONObject(0);
                     int idUsuario = objeto.getInt("idUsuario");
                     Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("imagen"));
                     int seguidores = objeto.getInt("seguidores");
                     String nickname = objeto.getString("nickname");
-                    Usuario nuevoUsuario = new Usuario(idUsuario,imagenPerfil,nickname,seguidores,1);
-
-                    mostrarPerfil(nuevoUsuario);
+                    perfil = new Usuario(idUsuario,imagenPerfil,nickname,seguidores,1);
+                    publicacionesPerfil = HomeFragment.getPublicaciones();
+                    for(int x = 0; x < publicacionesPerfil.size();x++){
+                        if(publicacionesPerfil.get(x).getIdUsuario() != 1){
+                            publicacionesPerfil.remove(x);
+                        }
+                    }
+                    mostrarPublicacionesPerfil(publicacionesPerfil);
+                    mostrarPerfil(perfil);
+                    gestoActualizar.setRefreshing(false);
 
 
                 } catch (JSONException e) {
@@ -145,8 +179,9 @@ public class PerfilActivity extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity().getBaseContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getBaseContext(),"No se ha podido mostrar el perfil actualizado!",Toast.LENGTH_SHORT).show();
                 System.out.println(error.getMessage());
+                gestoActualizar.setRefreshing(false);
 
             }
         }) {
@@ -157,8 +192,9 @@ public class PerfilActivity extends Fragment {
                 return parametros;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(jsonArrayRequest);
+
+        jsonArrayRequest.setTag(TAG);
+        MiSingleton.getInstance(getContext()).addToRequestQueue(jsonArrayRequest);
     }
 
 
@@ -189,6 +225,7 @@ public class PerfilActivity extends Fragment {
     public void mostrarPerfil(Usuario u){
         imagen_perfil.setImageBitmap(u.getFotoPerfil());
         nickname_perfil.setText(u.getNickname());
+        num_publis_txt.setText(String.valueOf(publicacionesPerfil.size()) + " \n publicaciones");
         num_seguidores_txt.setText(String.valueOf(u.getSeguidores()) + "\n seguidores");
         num_seguidos_txt.setText(String.valueOf(u.getSiguiendo() + "\n siguiendo"));
 

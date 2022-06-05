@@ -6,25 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".inicio.HomeFragment">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="60dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <GridView
-            android:id="@+id/gridViewHome"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/gestoActualizarHome"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="1"
-            android:padding="20dp"
-            android:verticalSpacing="70dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-        </GridView>
-    </ScrollView>
+            <GridView
+                android:id="@+id/gridViewHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="1"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:verticalSpacing="70dp">
+
+            </GridView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
