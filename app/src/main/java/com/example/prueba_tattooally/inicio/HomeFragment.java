@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
             /*EMULADOR*/
             //obtenerPublicaciones("http://10.0.2.2/tattooally_php/obtener_publicaciones.php");
             /*DISPOSITIVOS MOVILES*/
-            obtenerPublicaciones("http://192.168.1.138/tattooally_php/obtener_publicaciones.php");
+            obtenerPublicaciones("http://192.168.1.121/tattooally_php/obtener_publicaciones.php");
 
         }else{
             mostrarPublicaciones(publicaciones);

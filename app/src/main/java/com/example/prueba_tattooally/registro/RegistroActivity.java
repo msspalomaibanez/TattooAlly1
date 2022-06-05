@@ -68,7 +68,7 @@ public class RegistroActivity extends AppCompatActivity {
                 //en caso de que las validaciones se hayan completado sin ningún problema se ejecutarán
                 //los métodos de registro y del diálogo de carga
                 if (aux) {
-                    registrarUsuario("http://10.0.2.2/tattooally_php/registrar_usuario.php");
+                    registrarUsuario("http://192.168.1.121/tattooally_php/registrar_usuario.php");
                     dialogoCarga();
                 }
             }

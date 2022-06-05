@@ -48,6 +48,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.prueba_tattooally.Models.MiSingleton;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
 import com.example.prueba_tattooally.databinding.FragmentNuevoBinding;
@@ -96,7 +97,7 @@ public class NuevoActivity extends Fragment {
             public void onClick(View view) {
 
                 if(imagen != null && !descripcionImagen.getText().toString().isEmpty() && !localizacionNuevo.getSelectedItem().equals("") && !estiloNuevo.getSelectedItem().equals("")){
-                    crearPublicacion("http://192.168.1.138/tattooally_php/crear_publicacion.php");
+                    crearPublicacion("http://192.168.1.121/tattooally_php/crear_publicacion.php");
                }else{
                     Toast.makeText(getContext(), "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
@@ -198,8 +199,7 @@ public class NuevoActivity extends Fragment {
                 return parametros;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(stringRequest);
+        MiSingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
 
     }
 

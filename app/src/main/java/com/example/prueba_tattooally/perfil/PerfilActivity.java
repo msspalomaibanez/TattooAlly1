@@ -97,7 +97,7 @@ public class PerfilActivity extends Fragment {
         gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                cargarPerfil("http://192.168.1.138/tattooally_php/mostrar_perfil.php");
+                cargarPerfil("http://192.168.1.121/tattooally_php/mostrar_perfil.php");
             }
         });
 
@@ -110,7 +110,7 @@ public class PerfilActivity extends Fragment {
             }
         });
         if(perfil == null){
-            cargarPerfil("http://192.168.1.138/tattooally_php/mostrar_perfil.php");
+            cargarPerfil("http://192.168.1.121/tattooally_php/mostrar_perfil.php");
         }else{
 
             publicacionesPerfil = HomeFragment.getPublicaciones();

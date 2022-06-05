@@ -93,26 +93,6 @@
                 android:minHeight="48dp" />
 
             <TextView
-                android:id="@+id/editar_pass_txt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:fontFamily="@font/comfortaa"
-                android:text="@string/pass_usu_txt"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/editar_pass_edittxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:ems="10"
-                android:fontFamily="@font/comfortaa"
-                android:hint="@string/pass_usu_placeholder"
-                android:inputType="textPassword"
-                android:minHeight="48dp" />
-
-            <TextView
                 android:id="@+id/editar_foto_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,7 +104,7 @@
                 android:id="@+id/img_editar_perfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/ic_baseline_add_24" />
 
             <Button
                 android:id="@+id/editar_btn"
