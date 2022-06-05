@@ -11,6 +11,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Prueba_TattooAlly"
 include ':app'
-include ':uikit'
-project(':uikit').projectDir = new File(rootDir, 'android-java-chat-ui-kit-master/uikit/')
-include ':uikit'
+

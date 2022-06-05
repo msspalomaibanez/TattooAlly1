@@ -23,32 +23,33 @@
         <entry key="..\:/Grado/2-cibercole/1. proyecto/Prueba_TattooAlly/app/src/main/res/layout/splash.xml" value="0.25" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/Prueba_TattooAlly/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/drawable/gradient_txt.xml" value="0.26614583333333336" />
+        <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/drawable/ic_carga.xml" value="0.26614583333333336" />
+        <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/drawable/ic_dise_o_sin_t_tulo__5_.xml" value="0.21851851851851853" />
+        <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/drawable/ic_tattooally_sin_eslogan.xml" value="0.26614583333333336" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/activity_main.xml" value="0.24351851851851852" />
+        <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/animated_vector.xml" value="0.1" />
+        <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/carga.xml" value="0.264" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/fragment_busqueda.xml" value="0.264" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/fragment_editar_perfil.xml" value="0.25" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/fragment_explorar.xml" value="0.25" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/fragment_home.xml" value="0.24947916666666667" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/fragment_nuevo.xml" value="0.25" />
-        <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/fragment_perfil.xml" value="0.6" />
+        <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/fragment_perfil.xml" value="0.2" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/login.xml" value="0.2" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/publicacion.xml" value="0.264" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/registro.xml" value="0.25" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/layout/splash.xml" value="0.25" />
         <entry key="..\:/Grado/2-cibercole/1. proyecto/TattooAlly1/app/src/main/res/menu/menu.xml" value="0.25" />
-        <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/fragment_busqueda.xml" value="0.3625" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/fragment_chat.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/fragment_explorar.xml" value="0.3625" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/fragment_nuevo.xml" value="0.3625" />
-        <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/fragment_perfil.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/fragment_perfil.xml" value="0.3625" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/login.xml" value="0.3625" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/publicacion.xml" value="0.3625" />
-        <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/publicacion_perfil.xml" value="0.3625" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/registro.xml" value="0.3625" />
         <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/layout/splash.xml" value="0.3625" />
-        <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
-        <entry key="..\:/Users/AdrianG/TattooAlly1/app/src/main/res/menu/menu.xml" value="0.3625" />
       </map>
     </option>
   </component>
