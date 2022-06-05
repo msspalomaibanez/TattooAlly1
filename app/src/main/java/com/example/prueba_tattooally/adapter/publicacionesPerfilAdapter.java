@@ -13,13 +13,13 @@ import com.example.prueba_tattooally.R;
 
 import java.util.ArrayList;
 
-public class PostsAdapter extends BaseAdapter {
+public class publicacionesPerfilAdapter extends BaseAdapter {
 
     private Context contexto;
     private final ArrayList<Publicacion> publicaciones;
 
 
-    public PostsAdapter(Context contexto, ArrayList<Publicacion> publicaciones) {
+    public publicacionesPerfilAdapter(Context contexto, ArrayList<Publicacion> publicaciones) {
         this.contexto = contexto;
         this.publicaciones = publicaciones;
     }
@@ -43,23 +43,12 @@ public class PostsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.publicacion, null, true);
+            convertView = inflater.inflate(R.layout.publicacion_perfil, null, true);
         }
 
-        ImageView imageView = convertView.findViewById(R.id.fotoPerfilPublicacion);
-        imageView.setImageResource(R.drawable.tattooally);
-
-        imageView = convertView.findViewById(R.id.imagenPublicacion);
+        ImageView imageView = convertView.findViewById(R.id.imagen_publicacion_perfil);
         imageView.setImageBitmap(publicaciones.get(position).getFoto());
 
-        TextView texto = convertView.findViewById(R.id.localizacionPublicacion);
-        texto.setText(publicaciones.get(position).getLocalizacion());
-
-        texto = convertView.findViewById(R.id.categoriaPublicacion);
-        texto.setText(publicaciones.get(position).getEstilo());
-
-        texto = convertView.findViewById(R.id.descripcionPublicacion);
-        texto.setText(publicaciones.get(position).getDescripcion());
 
         return convertView;
     }

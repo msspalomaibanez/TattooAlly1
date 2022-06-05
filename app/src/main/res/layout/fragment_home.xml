@@ -19,6 +19,9 @@
             android:id="@+id/gridViewHome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:numColumns="1"
+            android:padding="20dp"
+            android:verticalSpacing="70dp"
             android:orientation="vertical">
 
         </GridView>

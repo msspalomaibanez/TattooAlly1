@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class Publicacion implements Serializable {
     private int idPublicacion;
+    private int idUsuario;
     private Bitmap foto;
     private String descripcion;
     private String localizacion;
@@ -14,8 +15,9 @@ public class Publicacion implements Serializable {
     public Publicacion() {
     }
 
-    public Publicacion(int idPublicacion, Bitmap foto, String descripcion, String localizacion,String estilo) {
+    public Publicacion(int idPublicacion, int idUsuario, Bitmap foto, String descripcion, String localizacion, String estilo) {
         this.idPublicacion = idPublicacion;
+        this.idUsuario = idUsuario;
         this.foto = foto;
         this.descripcion = descripcion;
         this.localizacion = localizacion;
@@ -62,10 +64,19 @@ public class Publicacion implements Serializable {
         this.estilo = estilo;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     @Override
     public String toString() {
         return "Publicacion{" +
                 "idPublicacion=" + idPublicacion +
+                ", idUsuario=" + idUsuario +
                 ", foto=" + foto +
                 ", descripcion='" + descripcion + '\'' +
                 ", localizacion='" + localizacion + '\'' +

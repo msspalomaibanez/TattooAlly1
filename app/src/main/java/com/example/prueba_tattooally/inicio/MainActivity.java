@@ -33,7 +33,7 @@ import com.example.prueba_tattooally.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    ImageView imagen1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

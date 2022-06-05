@@ -24,7 +24,7 @@
             tools:srcCompat="@drawable/tattoo" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/nickname_publicacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -96,10 +96,6 @@
         android:layout_marginStart="10dp"
         android:fontFamily="@font/comfortaa"
         android:text="@string/descripcion_txt" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 
 </LinearLayout>

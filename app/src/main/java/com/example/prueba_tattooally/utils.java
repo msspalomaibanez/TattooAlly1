@@ -173,12 +173,43 @@ public class utils {
             try {
                 JSONObject objeto = jsonArray.getJSONObject(x);
                 int id = objeto.getInt("id");
+                int idUsuario = objeto.getInt("idUsuario");
                 Bitmap imagen = utils.StringABitMap(objeto.getString("imagen"));
                 String descripcion = objeto.getString("descripcion");
                 String localizacion = objeto.getString("localizacion");
                 String estilo = objeto.getString("estilo");
 
-                Publicacion nuevaPublicacion = new Publicacion(id,imagen,descripcion,localizacion,estilo);
+                Publicacion nuevaPublicacion = new Publicacion(id,idUsuario,imagen,descripcion,localizacion,estilo);
+                publicaciones.add(nuevaPublicacion);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        guardarArrayPublicaciones(publicaciones);
+        return publicaciones;
+
+    }
+
+    public static ArrayList<Publicacion> guardarArrayPublicaciones(ArrayList<Publicacion> publicaciones){
+    return publicaciones;
+    }
+
+    public static ArrayList<Publicacion> JSONArrayAPublicacionesPerfil(JSONArray jsonArray){
+        ArrayList<Publicacion> publicaciones = new ArrayList<Publicacion>();
+
+        for (int x = 1; x < jsonArray.length();x++){
+
+            try {
+                JSONObject objeto = jsonArray.getJSONObject(x);
+                int id = objeto.getInt("id");
+                int idUsuario = objeto.getInt("idUsuario");
+                Bitmap imagen = utils.StringABitMap(objeto.getString("imagen"));
+                String descripcion = objeto.getString("descripcion");
+                String localizacion = objeto.getString("localizacion");
+                String estilo = objeto.getString("estilo");
+
+                Publicacion nuevaPublicacion = new Publicacion(id,idUsuario,imagen,descripcion,localizacion,estilo);
                 publicaciones.add(nuevaPublicacion);
             } catch (JSONException e) {
                 e.printStackTrace();
