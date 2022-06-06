@@ -48,6 +48,10 @@
     <string name="realista_txt">Realista</string>
     <string name="ornamental_txt">Ornamental</string>
     <string name="resultados_txt">Resultados de la búsqueda: </string>
+    <!--chat-->
+    <string name="error_txt">Funcionalidad aún en proceso de ser implementada</string>
+    <string name="chat_txt">Debido a unos problemas de última hora, el chat no podrá ser implementado hasta su
+                            próxima versión. \n \n Disculpen las molestias y disfruten del resto de la app :)</string>
     <!--perfil-->
     <string name="publicaciones_txt">0 \n publicaciones</string>
     <string name="seguidores_txt">0 \n seguidores</string>
