@@ -181,11 +181,13 @@ public class utils {
                 int id = objeto.getInt("id");
                 int idUsuario = objeto.getInt("idUsuario");
                 Bitmap imagen = utils.StringABitMap(objeto.getString("imagen"));
+                Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("fotoPerfil"));
                 String descripcion = objeto.getString("descripcion");
+                String nickname = objeto.getString("nickname");
                 String localizacion = objeto.getString("localizacion");
                 String estilo = objeto.getString("estilo");
 
-                Publicacion nuevaPublicacion = new Publicacion(id,idUsuario,imagen,descripcion,localizacion,estilo);
+                Publicacion nuevaPublicacion = new Publicacion(id,idUsuario,nickname,imagen,imagenPerfil,descripcion,localizacion,estilo);
                 publicaciones.add(nuevaPublicacion);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -211,11 +213,13 @@ public class utils {
                 int id = objeto.getInt("id");
                 int idUsuario = objeto.getInt("idUsuario");
                 Bitmap imagen = utils.StringABitMap(objeto.getString("imagen"));
+                Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("fotoPerfil"));
                 String descripcion = objeto.getString("descripcion");
+                String nickname = objeto.getString("nickname");
                 String localizacion = objeto.getString("localizacion");
                 String estilo = objeto.getString("estilo");
 
-                Publicacion nuevaPublicacion = new Publicacion(id,idUsuario,imagen,descripcion,localizacion,estilo);
+                Publicacion nuevaPublicacion = new Publicacion(id,idUsuario,nickname,imagen,imagenPerfil,descripcion,localizacion,estilo);
                 publicaciones.add(nuevaPublicacion);
             } catch (JSONException e) {
                 e.printStackTrace();
