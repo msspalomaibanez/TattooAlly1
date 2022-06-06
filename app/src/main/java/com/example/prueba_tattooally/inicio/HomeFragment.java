@@ -135,7 +135,7 @@ public class HomeFragment extends Fragment {
         if(binding != null){
             View root = binding.getRoot();
             GridView gridView = root.findViewById(R.id.gridViewHome);
-            publicacionesInicioAdapter publicacionesInicioAdapter = new publicacionesInicioAdapter(getContext(), (ArrayList<Publicacion>) publicaciones.subList(0,10));
+            publicacionesInicioAdapter publicacionesInicioAdapter = new publicacionesInicioAdapter(getContext(), publicaciones);
             gridView.setAdapter(publicacionesInicioAdapter);
         }
 
