@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         inicio = findViewById(R.id.inicio_btn);
-        usuario = findViewById(R.id.loginNickname);
+        usuario = findViewById(R.id.nicknameLogin);
         contrasena = findViewById(R.id.nick_edittxt);
         valor_contrasena = String.valueOf(contrasena.getText());
         atras = findViewById(R.id.back);

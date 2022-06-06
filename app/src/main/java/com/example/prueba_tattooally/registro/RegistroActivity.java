@@ -63,7 +63,7 @@ public class RegistroActivity extends AppCompatActivity {
         //asociamos el view al layout correspondiente
         v = findViewById(R.id.layout_registro);
 
-        nombre = findViewById(R.id.loginNickname);
+        nombre = findViewById(R.id.nombreApellidosNuevo);
         nickname = findViewById(R.id.nick_edittxt);
         email = findViewById(R.id.email_edittxt);
         contrasena1 = findViewById(R.id.pass_edittxt);
