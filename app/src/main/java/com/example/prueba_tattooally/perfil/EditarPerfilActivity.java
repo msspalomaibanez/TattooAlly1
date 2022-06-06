@@ -1,5 +1,6 @@
 package com.example.prueba_tattooally.perfil;
 
+import static com.example.prueba_tattooally.perfil.PerfilActivity.perfil;
 import static com.example.prueba_tattooally.utils.BitMapAString;
 
 import android.app.Activity;
@@ -51,7 +52,7 @@ public class EditarPerfilActivity extends Fragment {
     private RequestQueue requestQueue;
     private Usuario usuario;
     private EditText nombre;
-    private EditText nickname;
+    private String nickname;
     private EditText email;
     private ImageView img_preview;
     private Bitmap img;
@@ -67,10 +68,10 @@ public class EditarPerfilActivity extends Fragment {
         View root = binding.getRoot();
 
         URL = "http://" + SplashActivity.getIp() + "/tattooally_php/editar_perfil.php";
-        usuario = PerfilActivity.perfil;
+        usuario = perfil;
         nombre = root.findViewById(R.id.editar_nom_edittxt);
-        nickname = root.findViewById(R.id.editar_nick_edittxt);
         email = root.findViewById(R.id.editar_email_edittxt);
+        nickname = usuario.getNickname();
         img_preview = root.findViewById(R.id.img_editar_perfil);
         requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
         cargarDatos();
@@ -145,7 +146,7 @@ public class EditarPerfilActivity extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
                 parametros.put("nombre", nombre.getText().toString());
-                parametros.put("nickname", nickname.getText().toString());
+                parametros.put("nickname", nickname);
                 parametros.put("email", email.getText().toString());
                 parametros.put("imagen", BitMapAString(img));
                 return parametros;
@@ -163,7 +164,6 @@ public class EditarPerfilActivity extends Fragment {
 
     public void cargarDatos() {
         nombre.setText(usuario.getNombre());
-        nickname.setText(usuario.getNickname());
         email.setText(usuario.getEmail());
         img = usuario.getFotoPerfil();
         img_preview.setImageBitmap(img);

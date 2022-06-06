@@ -54,26 +54,6 @@
                 android:minHeight="48dp" />
 
             <TextView
-                android:id="@+id/editar_nick_txt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:fontFamily="@font/comfortaa"
-                android:text="@string/nick_txt"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/editar_nick_edittxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:ems="10"
-                android:fontFamily="@font/comfortaa"
-                android:hint="@string/nick_txt"
-                android:inputType="textPersonName"
-                android:minHeight="48dp" />
-
-            <TextView
                 android:id="@+id/editar_email_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
