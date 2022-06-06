@@ -1,7 +1,6 @@
 package com.example.prueba_tattooally.nuevo;
 
 
-import static androidx.navigation.fragment.NavHostFragment.findNavController;
 import static com.example.prueba_tattooally.utils.BitMapAString;
 
 
@@ -11,8 +10,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
-import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,10 +35,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 
 import com.android.volley.AuthFailureError;
@@ -50,16 +43,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.prueba_tattooally.Models.MiSingleton;
 import com.example.prueba_tattooally.R;
-import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
 import com.example.prueba_tattooally.databinding.FragmentNuevoBinding;
 import com.example.prueba_tattooally.inicio.HomeFragment;
-import com.example.prueba_tattooally.inicio.MainActivity;
 import com.example.prueba_tattooally.login.SplashActivity;
-import com.example.prueba_tattooally.utils;
-import com.google.android.material.navigation.NavigationView;
 
 
 import java.io.IOException;
@@ -199,7 +187,7 @@ public class NuevoActivity extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 String milisegundos = String.valueOf(System.currentTimeMillis());
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("usuario",String.valueOf(SplashActivity.getUsuarioLogeado().getIdUsuario()));
+                parametros.put("usuario", String.valueOf(HomeFragment.getUsuarioLogeado().getIdUsuario()));
                 parametros.put("nombreArchivo",milisegundos);
                 parametros.put("imagen",BitMapAString(imagen));
                 parametros.put("descripcion",descripcionImagen.getText().toString());

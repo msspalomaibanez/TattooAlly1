@@ -28,6 +28,16 @@ public class Publicacion implements Serializable {
         this.estilo = estilo;
     }
 
+    public Publicacion(int idPublicacion, int idUsuario, String nickname, Bitmap foto, String descripcion, String localizacion, String estilo) {
+        this.idPublicacion = idPublicacion;
+        this.idUsuario = idUsuario;
+        this.nickname = nickname;
+        this.foto = foto;
+        this.descripcion = descripcion;
+        this.localizacion = localizacion;
+        this.estilo = estilo;
+    }
+
     public int getIdPublicacion() {
         return idPublicacion;
     }
@@ -91,7 +101,17 @@ public class Publicacion implements Serializable {
     public void setFotoPerfil(Bitmap fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
+    public Publicacion(Publicacion p){
+        this.idUsuario = p.idUsuario;
+        this.fotoPerfil = p.fotoPerfil;
+        this.nickname = p.nickname;
+        this.foto = p.foto;
+        this.idPublicacion = p.idPublicacion;
+        this.estilo = p.estilo;
+        this.localizacion = p.localizacion;
+        this.descripcion = p.descripcion;
 
+    }
     @Override
     public String toString() {
         return "Publicacion{" +

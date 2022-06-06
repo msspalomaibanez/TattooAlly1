@@ -26,8 +26,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prueba_tattooally.inicio.MainActivity;
 import com.example.prueba_tattooally.R;
+import com.example.prueba_tattooally.login.SplashActivity;
 import com.example.prueba_tattooally.utils;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,7 +82,7 @@ public class RegistroActivity extends AppCompatActivity {
                 //en caso de que las validaciones se hayan completado sin ningún problema se ejecutarán
                 //los métodos de registro y del diálogo de carga
                 if (aux) {
-                    registrarUsuario("http://192.168.1.121/tattooally_php/registrar_usuario.php");
+                    registrarUsuario("http://"+ SplashActivity.getIp() +"/tattooally_php/registrar_usuario.php");
                     dialogoCarga(v);
                 }
             }
@@ -113,8 +115,10 @@ public class RegistroActivity extends AppCompatActivity {
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(!response.equals(1)){ //AÑADIR VERIFICACIÓN VALIDACIONES AQUÍ
+                if(!response.equals("Correcto")){
+                    String urlAux = "http://"+ SplashActivity.getIp()+"/tattooally_php/cargar_perfil.php?nickname=" + nickname.getText().toString();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("usuarioLogeado", nickname.getText().toString());
                         startActivity(intent);
                 }else{
                     Toast.makeText(RegistroActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
@@ -124,7 +128,7 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error){
                 Toast.makeText(RegistroActivity.this, "Error, enviando datos del error...", Toast.LENGTH_SHORT).show();
-   /*V.Desarrollo*/ System.out.println(error.toString());
+                System.out.println(error.toString());
             }
         }){
             @Override

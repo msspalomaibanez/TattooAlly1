@@ -2,6 +2,9 @@ package com.example.prueba_tattooally.inicio;
 
 import static com.example.prueba_tattooally.utils.JSONArrayAPublicaciones;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,12 +24,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.prueba_tattooally.Models.MiSingleton;
 import com.example.prueba_tattooally.Models.Publicacion;
+import com.example.prueba_tattooally.Models.Usuario;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.adapter.publicacionesInicioAdapter;
 import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
 import com.example.prueba_tattooally.login.SplashActivity;
+import com.example.prueba_tattooally.utils;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +54,7 @@ public class HomeFragment extends Fragment {
     public static final String TAG = "solicitudPublicaciones";
     JsonArrayRequest jsonArrayRequest;
     RequestQueue requestQueue;
+    static Usuario usuarioLogeado;
     SwipeRefreshLayout gestoActualizar;
     String URL;
 
@@ -56,9 +64,11 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        usuarioLogeado = new Usuario();
+        Intent nicknameAux = getActivity().getIntent();
+        String nickname = nicknameAux.getStringExtra("usuarioLogeado");
+        cargarUsuario("http://"+ SplashActivity.getIp()+"/tattooally_php/cargar_perfil.php?nickname="+nickname,getContext());
         URL = "http://"+ SplashActivity.getIp()+"/tattooally_php/obtener_publicaciones.php";
-        System.out.println(URL);
         requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
         if(publicaciones == null){
 
@@ -67,7 +77,6 @@ public class HomeFragment extends Fragment {
         }else{
             mostrarPublicaciones(publicaciones);
         }
-
         gestoActualizar = root.findViewById(R.id.gestoActualizarHome);
         gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -131,6 +140,15 @@ public class HomeFragment extends Fragment {
         return publicaciones;
     }
 
+
+    public static Usuario getUsuarioLogeado() {
+        return usuarioLogeado;
+    }
+
+    public static void setUsuarioLogeado(Usuario usuarioLogeado) {
+        HomeFragment.usuarioLogeado = usuarioLogeado;
+    }
+
     public void mostrarPublicaciones(ArrayList<Publicacion> publicaciones){
         if(binding != null){
             View root = binding.getRoot();
@@ -144,4 +162,59 @@ public class HomeFragment extends Fragment {
 
 
     }
+    public static void cargarUsuario(String URL, Context context){
+
+        JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest(URL
+                , new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONArray arrayJSON = response;
+                try {
+                    JSONObject objeto = arrayJSON.getJSONObject(0);
+                    usuarioLogeado = guardarUsuario(objeto);
+                    System.out.println("SOUT DENTRO DE CARGAR USUARIO:" + usuarioLogeado.toString() ) ;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context,"No se ha podido recuperar el usuario!",Toast.LENGTH_SHORT).show();
+                System.out.println(error.getMessage());
+
+            }
+        });
+
+        MiSingleton.getInstance(context).addToRequestQueue(jsonArrayRequest);
+
+    }
+
+    private static Usuario guardarUsuario(JSONObject objeto) {
+        Usuario usuarioLogeado = new Usuario();
+        try{
+            int idUsuario = objeto.getInt("idUsuario");
+            Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("imagen"));
+            String email = objeto.getString("email");
+            String nombre = objeto.getString("nombre");
+            int seguidores = objeto.getInt("seguidores");
+            String nickname = objeto.getString("nickname");
+            usuarioLogeado.setIdUsuario(idUsuario);
+            usuarioLogeado.setFotoPerfil(imagenPerfil);
+            usuarioLogeado.setEmail(email);
+            usuarioLogeado.setNombre(nombre);
+            usuarioLogeado.setNickname(nickname);
+            usuarioLogeado.setSeguidores(seguidores);
+            usuarioLogeado.setSiguiendo(0);
+        } catch (JSONException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return  usuarioLogeado;
+
+    }
+
+
 }

@@ -26,7 +26,6 @@ public class SplashActivity extends AppCompatActivity {
     Button inicio;
     Button registro;
     static String ip;
-    static Usuario usuarioLogeado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +65,5 @@ public class SplashActivity extends AppCompatActivity {
         return ip;
     }
 
-    public static Usuario getUsuarioLogeado() {
-        return usuarioLogeado;
-    }
 
-    public static void setUsuarioLogeado(Usuario usuarioLogeado) {
-        SplashActivity.usuarioLogeado = usuarioLogeado;
-    }
 }

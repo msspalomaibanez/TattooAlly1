@@ -1,6 +1,5 @@
 package com.example.prueba_tattooally.perfil;
 
-import static com.example.prueba_tattooally.perfil.PerfilActivity.perfil;
 import static com.example.prueba_tattooally.utils.BitMapAString;
 
 import android.app.Activity;
@@ -39,6 +38,7 @@ import com.example.prueba_tattooally.Models.MiSingleton;
 import com.example.prueba_tattooally.Models.Usuario;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentEditarPerfilBinding;
+import com.example.prueba_tattooally.inicio.HomeFragment;
 import com.example.prueba_tattooally.login.SplashActivity;
 
 import java.io.IOException;
@@ -68,7 +68,7 @@ public class EditarPerfilActivity extends Fragment {
         View root = binding.getRoot();
 
         URL = "http://" + SplashActivity.getIp() + "/tattooally_php/editar_perfil.php";
-        usuario = perfil;
+        usuario = HomeFragment.getUsuarioLogeado();
         nombre = root.findViewById(R.id.editar_nom_edittxt);
         email = root.findViewById(R.id.editar_email_edittxt);
         nickname = usuario.getNickname();

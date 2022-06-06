@@ -1,6 +1,7 @@
 package com.example.prueba_tattooally.inicio;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,11 +14,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.prueba_tattooally.Models.Usuario;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.login.SplashActivity;
+import com.example.prueba_tattooally.perfil.PerfilActivity;
+import com.example.prueba_tattooally.utils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         ip = "192.168.1.138";
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         //asociamos el view al layout correspondiente
         v = findViewById(R.id.layout_home);
         //ejecutamos el dialogo de carga en la creación del activity
@@ -137,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.cerrar_sesion:
                 Toast.makeText(this, "Se ha cerrado su sesión", Toast.LENGTH_SHORT)
                         .show();
+
+                PerfilActivity.setPerfil(null);
+                getIntent().putExtra("usuarioLogeado","");
                 Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
                 startActivity(intent);
                 break;
@@ -243,4 +252,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return 100;
     }
+
+
 }

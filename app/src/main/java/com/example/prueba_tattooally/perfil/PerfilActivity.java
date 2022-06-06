@@ -2,6 +2,7 @@ package com.example.prueba_tattooally.perfil;
 
 import static com.example.prueba_tattooally.utils.JSONArrayAPublicaciones;
 import static com.example.prueba_tattooally.utils.JSONArrayAPublicacionesPerfil;
+import static com.example.prueba_tattooally.utils.copiarArrayPublicaciones;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -37,7 +38,6 @@ import com.example.prueba_tattooally.adapter.publicacionesPerfilAdapter;
 import com.example.prueba_tattooally.databinding.FragmentPerfilBinding;
 import com.example.prueba_tattooally.inicio.HomeFragment;
 import com.example.prueba_tattooally.inicio.MainActivity;
-import com.example.prueba_tattooally.login.SplashActivity;
 import com.example.prueba_tattooally.utils;
 import com.facebook.imagepipeline.common.SourceUriType;
 
@@ -67,7 +67,6 @@ public class PerfilActivity extends Fragment {
     public static final String TAG = "solicitudPerfil";
     RequestQueue requestQueue;
     JsonArrayRequest jsonArrayRequest;
-    String URL;
     Button editar_btn;
     CircleImageView imagen_perfil;
     TextView nickname_perfil;
@@ -94,12 +93,12 @@ public class PerfilActivity extends Fragment {
         num_publis_txt = root.findViewById(R.id.num_publis_txt);
 
         requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
-        URL = "http://"+ SplashActivity.getIp()+"/tattooally_php/mostrar_perfil.php";
+
         gestoActualizar = root.findViewById(R.id.gestoActualizarPerfil);
         gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                cargarPerfil(URL);
+                cargarPerfil("http://"+MainActivity.getIp()+"/tattooally_php/cargar_perfil.php?nickname="+HomeFragment.getUsuarioLogeado().getNickname());
             }
         });
 
@@ -112,12 +111,12 @@ public class PerfilActivity extends Fragment {
             }
         });
         if(perfil == null){
-            cargarPerfil(URL);
+            cargarPerfil("http://"+MainActivity.getIp()+"/tattooally_php/cargar_perfil.php?nickname="+HomeFragment.getUsuarioLogeado().getNickname());
         }else{
 
-            publicacionesPerfil = HomeFragment.getPublicaciones();
+            publicacionesPerfil = copiarArrayPublicaciones(HomeFragment.getPublicaciones());
             for(int x = 0; x < publicacionesPerfil.size();x++){
-                if(publicacionesPerfil.get(x).getIdUsuario() != 1){
+                if(publicacionesPerfil.get(x).getIdUsuario() != perfil.getIdUsuario()){
                     publicacionesPerfil.remove(x);
                 }
             }
@@ -150,7 +149,7 @@ public class PerfilActivity extends Fragment {
     }
 
     private void cargarPerfil(String URL){
-         jsonArrayRequest  = new JsonArrayRequest( URL
+        jsonArrayRequest  = new JsonArrayRequest( URL
                 , new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -163,10 +162,11 @@ public class PerfilActivity extends Fragment {
                     String nombre = objeto.getString("nombre");
                     int seguidores = objeto.getInt("seguidores");
                     String nickname = objeto.getString("nickname");
+
                     perfil = new Usuario(idUsuario,nombre,nickname,imagenPerfil,email,seguidores,1);
-                    publicacionesPerfil = HomeFragment.getPublicaciones();
+                    publicacionesPerfil = copiarArrayPublicaciones(HomeFragment.getPublicaciones());
                     for(int x = 0; x < publicacionesPerfil.size();x++){
-                        if(publicacionesPerfil.get(x).getIdUsuario() != 1){
+                        if(publicacionesPerfil.get(x).getIdUsuario() != perfil.getIdUsuario()){
                             publicacionesPerfil.remove(x);
                         }
                     }
@@ -234,4 +234,15 @@ public class PerfilActivity extends Fragment {
         num_seguidos_txt.setText(String.valueOf(u.getSiguiendo() + "\n siguiendo"));
 
     }
+
+    public static Usuario getPerfil() {
+        return perfil;
+    }
+
+    public static void setPerfil(Usuario perfil) {
+        PerfilActivity.perfil = perfil;
+    }
+
+
 }
+

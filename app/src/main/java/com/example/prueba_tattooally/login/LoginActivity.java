@@ -31,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,10 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.equals("Correcto")){
                     Toast.makeText(getApplicationContext(),"Inicio de sesion correcto",Toast.LENGTH_SHORT)
                             .show();
-                    String URL2 ="http://"+ SplashActivity.getIp()+"/tattooally_php/cargar_perfil.php?nickname="+usuario.getText().toString();
-                    SplashActivity.usuarioLogeado = utils.cargarUsuario(URL2,getApplicationContext());
-                    System.out.println(SplashActivity.usuarioLogeado.toString());
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("usuarioLogeado", usuario.getText().toString());
                     startActivity(intent);
                 }else if (response.equals("Incorrecto")){
                     Toast.makeText(getApplicationContext(),"Datos inválidos",Toast.LENGTH_SHORT)
