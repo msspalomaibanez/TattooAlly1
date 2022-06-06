@@ -1,5 +1,7 @@
 package com.example.prueba_tattooally.adapter;
 
+
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,8 +48,9 @@ public class publicacionesInicioAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.publicacion, null, true);
         }
 
+
         ImageView imageView = convertView.findViewById(R.id.fotoPerfilPublicacion);
-        imageView.setImageResource(R.drawable.tattooally);
+        imageView.setImageBitmap(publicaciones.get(position).getFotoPerfil());
 
         imageView = convertView.findViewById(R.id.imagenPublicacion);
         imageView.setImageBitmap(publicaciones.get(position).getFoto());
@@ -56,7 +59,7 @@ public class publicacionesInicioAdapter extends BaseAdapter {
         texto.setText(publicaciones.get(position).getLocalizacion());
 
         texto = convertView.findViewById(R.id.nickname_publicacion);
-        texto.setText("aguadix");
+        texto.setText(publicaciones.get(position).getNickname());
 
         texto = convertView.findViewById(R.id.categoriaPublicacion);
         texto.setText(publicaciones.get(position).getEstilo());
