@@ -37,6 +37,7 @@ import com.example.prueba_tattooally.adapter.publicacionesPerfilAdapter;
 import com.example.prueba_tattooally.databinding.FragmentPerfilBinding;
 import com.example.prueba_tattooally.inicio.HomeFragment;
 import com.example.prueba_tattooally.inicio.MainActivity;
+import com.example.prueba_tattooally.login.SplashActivity;
 import com.example.prueba_tattooally.utils;
 import com.facebook.imagepipeline.common.SourceUriType;
 
@@ -66,6 +67,7 @@ public class PerfilActivity extends Fragment {
     public static final String TAG = "solicitudPerfil";
     RequestQueue requestQueue;
     JsonArrayRequest jsonArrayRequest;
+    String URL;
     Button editar_btn;
     CircleImageView imagen_perfil;
     TextView nickname_perfil;
@@ -92,12 +94,12 @@ public class PerfilActivity extends Fragment {
         num_publis_txt = root.findViewById(R.id.num_publis_txt);
 
         requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
-
+        URL = "http://"+ SplashActivity.getIp()+"/tattooally_php/mostrar_perfil.php";
         gestoActualizar = root.findViewById(R.id.gestoActualizarPerfil);
         gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                cargarPerfil("http://"+MainActivity.getIp()+"/tattooally_php/mostrar_perfil.php");
+                cargarPerfil(URL);
             }
         });
 
@@ -110,7 +112,7 @@ public class PerfilActivity extends Fragment {
             }
         });
         if(perfil == null){
-            cargarPerfil("http://"+MainActivity.getIp()+"/tattooally_php/mostrar_perfil.php");
+            cargarPerfil(URL);
         }else{
 
             publicacionesPerfil = HomeFragment.getPublicaciones();

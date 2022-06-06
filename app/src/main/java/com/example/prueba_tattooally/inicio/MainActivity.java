@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //IP DEL SERVIDOR
-        ip = "192.168.1.138";
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -138,7 +137,5 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public static String getIp() {
-        return ip;
-    }
+
 }

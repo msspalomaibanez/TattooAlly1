@@ -54,6 +54,7 @@ import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
 import com.example.prueba_tattooally.databinding.FragmentNuevoBinding;
 import com.example.prueba_tattooally.inicio.HomeFragment;
 import com.example.prueba_tattooally.inicio.MainActivity;
+import com.example.prueba_tattooally.login.SplashActivity;
 import com.example.prueba_tattooally.utils;
 import com.google.android.material.navigation.NavigationView;
 
@@ -96,7 +97,7 @@ public class NuevoActivity extends Fragment {
         estiloNuevo = root.findViewById(R.id.desplegableEstilos);
         publicar = root.findViewById(R.id.btnPublicar);
         requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
-        URL = "http://"+MainActivity.getIp()+"/tattooally_php/crear_publicacion.php";
+        URL = "http://"+ SplashActivity.getIp()+"/tattooally_php/crear_publicacion.php";
         publicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

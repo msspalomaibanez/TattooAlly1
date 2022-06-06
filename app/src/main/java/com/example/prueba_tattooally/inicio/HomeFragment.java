@@ -24,6 +24,7 @@ import com.example.prueba_tattooally.Models.Publicacion;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.adapter.publicacionesInicioAdapter;
 import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
+import com.example.prueba_tattooally.login.SplashActivity;
 
 import org.json.JSONArray;
 
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        URL = "http://"+MainActivity.getIp()+"/tattooally_php/obtener_publicaciones.php";
+        URL = "http://"+ SplashActivity.getIp()+"/tattooally_php/obtener_publicaciones.php";
         System.out.println(URL);
         requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
         if(publicaciones == null){
@@ -134,7 +135,7 @@ public class HomeFragment extends Fragment {
         if(binding != null){
             View root = binding.getRoot();
             GridView gridView = root.findViewById(R.id.gridViewHome);
-            publicacionesInicioAdapter publicacionesInicioAdapter = new publicacionesInicioAdapter(getContext(),publicaciones);
+            publicacionesInicioAdapter publicacionesInicioAdapter = new publicacionesInicioAdapter(getContext(), (ArrayList<Publicacion>) publicaciones.subList(0,10));
             gridView.setAdapter(publicacionesInicioAdapter);
         }
 

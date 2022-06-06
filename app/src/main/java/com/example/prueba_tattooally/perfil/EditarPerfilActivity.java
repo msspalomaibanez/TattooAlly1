@@ -35,6 +35,7 @@ import com.example.prueba_tattooally.Models.Usuario;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentEditarPerfilBinding;
 import com.example.prueba_tattooally.inicio.MainActivity;
+import com.example.prueba_tattooally.login.SplashActivity;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -58,7 +59,7 @@ public class EditarPerfilActivity extends Fragment {
         binding = FragmentEditarPerfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        URL = "http://"+ MainActivity.getIp()+"/tattooally_php/editar_perfil.php";
+        URL = "http://"+ SplashActivity.getIp()+"/tattooally_php/editar_perfil.php";
         usuario = PerfilActivity.perfil;
         nombre = root.findViewById(R.id.editar_nom_edittxt);
         nickname = root.findViewById(R.id.editar_nick_edittxt);
