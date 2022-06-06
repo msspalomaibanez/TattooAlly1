@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         .show();
 
                 PerfilActivity.setPerfil(null);
+                HomeFragment.setUsuarioLogeado(null);
                 getIntent().putExtra("usuarioLogeado","");
                 Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
                 startActivity(intent);

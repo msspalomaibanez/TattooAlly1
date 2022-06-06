@@ -45,6 +45,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -98,7 +99,7 @@ public class PerfilActivity extends Fragment {
         gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                cargarPerfil("http://"+MainActivity.getIp()+"/tattooally_php/cargar_perfil.php?nickname="+HomeFragment.getUsuarioLogeado().getNickname());
+                cargarPerfil("http://"+MainActivity.getIp()+"/tattooally_php/cargar_perfil.php?nickname="+ HomeFragment.getUsuarioLogeado().getNickname());
             }
         });
 
@@ -115,11 +116,8 @@ public class PerfilActivity extends Fragment {
         }else{
 
             publicacionesPerfil = copiarArrayPublicaciones(HomeFragment.getPublicaciones());
-            for(int x = 0; x < publicacionesPerfil.size();x++){
-                if(publicacionesPerfil.get(x).getIdUsuario() != perfil.getIdUsuario()){
-                    publicacionesPerfil.remove(x);
-                }
-            }
+            publicacionesPerfil.removeIf(p -> p.getIdUsuario() != perfil.getIdUsuario());
+
             mostrarPerfil(perfil);
             mostrarPublicacionesPerfil(publicacionesPerfil);
         }
@@ -165,11 +163,8 @@ public class PerfilActivity extends Fragment {
 
                     perfil = new Usuario(idUsuario,nombre,nickname,imagenPerfil,email,seguidores,1);
                     publicacionesPerfil = copiarArrayPublicaciones(HomeFragment.getPublicaciones());
-                    for(int x = 0; x < publicacionesPerfil.size();x++){
-                        if(publicacionesPerfil.get(x).getIdUsuario() != perfil.getIdUsuario()){
-                            publicacionesPerfil.remove(x);
-                        }
-                    }
+
+                    publicacionesPerfil.removeIf(p -> p.getIdUsuario() != perfil.getIdUsuario());
                     mostrarPublicacionesPerfil(publicacionesPerfil);
                     mostrarPerfil(perfil);
                     gestoActualizar.setRefreshing(false);
