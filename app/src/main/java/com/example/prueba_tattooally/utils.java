@@ -18,6 +18,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class utils {
@@ -89,16 +91,20 @@ public class utils {
      */
 
     public static boolean validarEmail (String email) {
-        String pattern = "^(.+)@(\\S+)$";
+        String pattern = "[A-Za-z0-9+_.-]+@(.+)$";
         boolean aux = true;
         //Si el email está vacío será falso
         if(email.isEmpty()) {
             aux = false;
         }
+        Pattern patt = Pattern.compile(pattern);
         //Si el email no es igual al patrón que hemos establecido previamente será falso
-        if (email != pattern) {
-            aux = false;
-        }
+            Matcher matcher = patt.matcher(email);
+            if(!matcher.matches()){
+                aux = false;
+            }
+
+
         return aux;
     };
 
