@@ -43,13 +43,13 @@
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/loginNickname"
+        android:id="@+id/nicknameLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ems="10"
         android:fontFamily="@font/comfortaa"
-        android:hint="@string/nom_usu_placeholder"
+        android:hint="@string/nickname_txt"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textSize="16sp" />
@@ -65,7 +65,7 @@
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/nick_edittxt"
+        android:id="@+id/passLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
