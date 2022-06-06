@@ -4,7 +4,6 @@ import static com.example.prueba_tattooally.utils.convertirContrasena;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -61,10 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 //validarUsuario(""http://"+MainActivity.getHostname()+"/tattooally_php/validar_usuario.php");
-                //dialogoCarga();
             }
         });
-        //añadimos la funcionalidad de volver a la anterior actividad al puplsar en la flecha añadida en la interfaz
+        //añadimos la funcionalidad de volver a la anterior actividad al pulsar en la flecha añadida en la interfaz
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,15 +110,4 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    /**
-     * Método por el cual ejecutaremos un diálogo emergente como pantalla de carga para mostrarle al usuario que
-     * se está ejecutando una petición a la base de datos
-     */
-    public void dialogoCarga() {
-        ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
-        if (!isFinishing()){
-            dialog.show(LoginActivity.this, "", "Cargando...", true);
-        }
-
-    }
 }
