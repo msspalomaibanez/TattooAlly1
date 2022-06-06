@@ -199,7 +199,7 @@ public class NuevoActivity extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 String milisegundos = String.valueOf(System.currentTimeMillis());
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("usuario","aguadix");
+                parametros.put("usuario",String.valueOf(SplashActivity.getUsuarioLogeado().getIdUsuario()));
                 parametros.put("nombreArchivo",milisegundos);
                 parametros.put("imagen",BitMapAString(imagen));
                 parametros.put("descripcion",descripcionImagen.getText().toString());
