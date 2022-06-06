@@ -61,6 +61,7 @@
     <string name="editar_txt">Editar perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="msg_modo_oscuro">La funcionalidad del modo oscuro aún no ha sido implementada</string>
+    <string name="msg_explorar">Esta funcionalidad aun no está implementada, puedes probar a buscar por estilo de tattoo</string>
 
     <string-array name="provincias">
         <item></item>
@@ -75,6 +76,7 @@
         <item>Burgos</item>
         <item>C\u00e1ceres</item>
         <item>C\u00e1diz</item>
+        <item>Cantabria</item>
         <item>Castell\u00f3n</item>
         <item>Ciudad Real</item>
         <item>C\u00f3rdoba</item>
@@ -102,7 +104,6 @@
         <item>Pontevedra</item>
         <item>Salamanca</item>
         <item>Santa Cruz de Tenerife</item>
-        <item>Cantabria</item>
         <item>Segovia</item>
         <item>Sevilla</item>
         <item>Soria</item>
@@ -122,10 +123,10 @@
     <string-array name="estilos">
         <item></item>
         <item>Blackwork</item>
-        <item>Old School</item>
+        <item>OldSchool</item>
         <item>Neotradicional</item>
         <item>Dotwork</item>
-        <item>Black and grey</item>
+        <item>BlackAndGrey</item>
         <item>Acuarela</item>
         <item>Japon\u00e9s</item>
         <item>Realista</item>

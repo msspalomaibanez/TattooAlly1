@@ -35,9 +35,10 @@
                 android:background="?android:attr/listDivider" />
 
             <GridView
-                android:id="@+id/grid_resultados"
+                android:id="@+id/grid_resultados_filtrado"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scrollbars="none"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

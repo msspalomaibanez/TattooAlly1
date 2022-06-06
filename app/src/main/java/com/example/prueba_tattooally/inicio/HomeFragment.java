@@ -156,11 +156,6 @@ public class HomeFragment extends Fragment {
             publicacionesInicioAdapter publicacionesInicioAdapter = new publicacionesInicioAdapter(getContext(), publicaciones);
             gridView.setAdapter(publicacionesInicioAdapter);
         }
-
-
-
-
-
     }
     public static void cargarUsuario(String URL, Context context){
 
