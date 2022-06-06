@@ -1,11 +1,26 @@
 package com.example.prueba_tattooally;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.widget.Toast;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.prueba_tattooally.Models.MiSingleton;
 import com.example.prueba_tattooally.Models.Publicacion;
+import com.example.prueba_tattooally.Models.Usuario;
+import com.example.prueba_tattooally.inicio.MainActivity;
+import com.example.prueba_tattooally.login.SplashActivity;
 
 
 import org.json.JSONArray;
@@ -18,6 +33,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -231,7 +248,49 @@ public class utils {
 
     }
 
+    public static Usuario cargarUsuario(String URL, Context context){
+        Usuario usuarioLogeado = new Usuario();
+        JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest(URL
+                , new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                System.out.println(response);
+                JSONArray arrayJSON = response;
+                try {
+                    JSONObject objeto = arrayJSON.getJSONObject(0);
+                    int idUsuario = objeto.getInt("idUsuario");
+                    Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("imagen"));
+                    String email = objeto.getString("email");
+                    String nombre = objeto.getString("nombre");
+                    int seguidores = objeto.getInt("seguidores");
+                    String nickname = objeto.getString("nickname");
+                    usuarioLogeado.setIdUsuario(idUsuario);
+                    usuarioLogeado.setFotoPerfil(imagenPerfil);
+                    usuarioLogeado.setEmail(email);
+                    usuarioLogeado.setNombre(nombre);
+                    usuarioLogeado.setNickname(nickname);
+                    usuarioLogeado.setSeguidores(10);
+                    usuarioLogeado.setSiguiendo(0);
+                    System.out.println(usuarioLogeado.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
 
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context,"No se ha podido recuperar el usuario!",Toast.LENGTH_SHORT).show();
+                System.out.println(error.getMessage());
+
+            }
+        });
+
+        MiSingleton.getInstance(context).addToRequestQueue(jsonArrayRequest);
+        return usuarioLogeado;
+
+    }
 
 
 }
