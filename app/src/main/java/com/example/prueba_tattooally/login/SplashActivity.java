@@ -35,6 +35,7 @@ public class SplashActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         //IP DEL SERVIDOR
         ip = "192.168.1.138";
+
         registro = findViewById(R.id.registro_btn);
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,5 +64,13 @@ public class SplashActivity extends AppCompatActivity {
 
     public static String getIp() {
         return ip;
+    }
+
+    public static Usuario getUsuarioLogeado() {
+        return usuarioLogeado;
+    }
+
+    public static void setUsuarioLogeado(Usuario usuarioLogeado) {
+        SplashActivity.usuarioLogeado = usuarioLogeado;
     }
 }
