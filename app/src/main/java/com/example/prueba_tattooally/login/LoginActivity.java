@@ -5,6 +5,7 @@ import static com.example.prueba_tattooally.utils.convertirContrasena;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +17,19 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.prueba_tattooally.inicio.MainActivity;
+import com.example.prueba_tattooally.Models.MiSingleton;
+import com.example.prueba_tattooally.Models.Usuario;
 import com.example.prueba_tattooally.R;
+import com.example.prueba_tattooally.inicio.MainActivity;
+import com.example.prueba_tattooally.perfil.PerfilActivity;
+import com.example.prueba_tattooally.utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     Button inicio;
     EditText usuario;
     EditText contrasena;
-    String valor_contrasena;
+    String URL;
     View atras;
 
     @Override
@@ -50,16 +60,17 @@ public class LoginActivity extends AppCompatActivity {
 
         inicio = findViewById(R.id.inicio_btn);
         usuario = findViewById(R.id.nicknameLogin);
-        contrasena = findViewById(R.id.nick_edittxt);
-        valor_contrasena = String.valueOf(contrasena.getText());
+        contrasena = findViewById(R.id.passLogin);
+
+
         atras = findViewById(R.id.back);
 
+
+        URL = "http://"+SplashActivity.getIp()+"/tattooally_php/validar_usuario.php";
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                //validarUsuario(""http://"+MainActivity.getHostname()+"/tattooally_php/validar_usuario.php");
+                validarUsuario(URL);
             }
         });
         //añadimos la funcionalidad de volver a la anterior actividad al pulsar en la flecha añadida en la interfaz
@@ -79,24 +90,34 @@ public class LoginActivity extends AppCompatActivity {
      * @param URL en la que se encuentra el archivo php con el login de los datos
      */
     public void validarUsuario(String URL){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL
+        StringRequest stringRequest  = new StringRequest(Request.Method.POST,URL
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(!response.isEmpty()){
+                if(response.equals("Correcto")){
+                    Toast.makeText(getApplicationContext(),"Inicio de sesion correcto",Toast.LENGTH_SHORT)
+                            .show();
+                    String URL2 ="http://"+ SplashActivity.getIp()+"/tattooally_php/cargar_perfil.php?nickname="+usuario.getText().toString();
+                    SplashActivity.usuarioLogeado = utils.cargarUsuario(URL2,getApplicationContext());
+                    System.out.println(SplashActivity.usuarioLogeado.toString());
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(LoginActivity.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
+                }else if (response.equals("Incorrecto")){
+                    Toast.makeText(getApplicationContext(),"Datos inválidos",Toast.LENGTH_SHORT)
+                            .show();
                 }
+
             }
-            }, new Response.ErrorListener(){
+
+        }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error){
-                Toast.makeText(LoginActivity.this, "Error, enviando datos del error...", Toast.LENGTH_SHORT).show();
-                 System.out.println(error.toString());
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println(error.getMessage());
+
             }
-            }){
+        }) {
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String,String>();
@@ -106,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }
 
