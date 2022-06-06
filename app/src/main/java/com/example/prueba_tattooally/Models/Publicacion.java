@@ -7,7 +7,9 @@ import java.io.Serializable;
 public class Publicacion implements Serializable {
     private int idPublicacion;
     private int idUsuario;
+    private String nickname;
     private Bitmap foto;
+    private Bitmap fotoPerfil;
     private String descripcion;
     private String localizacion;
     private String estilo;
@@ -15,10 +17,12 @@ public class Publicacion implements Serializable {
     public Publicacion() {
     }
 
-    public Publicacion(int idPublicacion, int idUsuario, Bitmap foto, String descripcion, String localizacion, String estilo) {
+    public Publicacion(int idPublicacion, int idUsuario, String nickname, Bitmap foto, Bitmap fotoPerfil, String descripcion, String localizacion, String estilo) {
         this.idPublicacion = idPublicacion;
         this.idUsuario = idUsuario;
+        this.nickname = nickname;
         this.foto = foto;
+        this.fotoPerfil = fotoPerfil;
         this.descripcion = descripcion;
         this.localizacion = localizacion;
         this.estilo = estilo;
@@ -70,6 +74,22 @@ public class Publicacion implements Serializable {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Bitmap getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(Bitmap fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     @Override
