@@ -7,6 +7,7 @@ import static com.example.prueba_tattooally.utils.BitMapAString;
 
 import android.app.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
@@ -14,11 +15,13 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -84,6 +87,10 @@ public class NuevoActivity extends Fragment {
     private Button publicar;
     private View root;
     private String URL;
+    private ProgressDialog progress;
+    private int progressStatus = 0;
+    private long fileSize = 0;
+    private Handler progressBarHandler = new Handler();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -103,6 +110,7 @@ public class NuevoActivity extends Fragment {
             public void onClick(View view) {
                 if(imagen != null && !descripcionImagen.getText().toString().isEmpty() && !localizacionNuevo.getSelectedItem().equals("") && !estiloNuevo.getSelectedItem().equals("")){
                     crearPublicacion(URL);
+                    dialogoCarga(view);
                }else{
                     Toast.makeText(getContext(), "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
@@ -162,14 +170,11 @@ public class NuevoActivity extends Fragment {
 
 
     public void crearPublicacion(String URL) {
-//        ProgressDialog dialog = new ProgressDialog(getContext());
-//        dialog.show(getContext(), "", "Publicando...", false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL
                 , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.trim().equalsIgnoreCase("publicado")){
-                    Toast.makeText(getContext(),"Publicación creada!",Toast.LENGTH_SHORT).show();
                     FragmentManager fragmentManager = getParentFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(((ViewGroup)getView().getParent()).getId(), new NuevoActivity());
@@ -216,6 +221,87 @@ public class NuevoActivity extends Fragment {
 
     }
 
+    /**
+     * Método por el cual ejecutaremos un diálogo emergente como pantalla de carga para mostrarle al usuario que
+     * se está ejecutando una petición a la base de datos
+     */
+    public void dialogoCarga(View v) {
+        //preparamos la creación del dialogo
+        progress = new ProgressDialog(v.getContext());
 
+
+        progress.setMessage("Subiendo publicación...");
+        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progress.setProgress(0);
+        progress.setMax(100);
+        progress.show();
+
+        //reseteamos el valor de progreso
+        progressStatus = 0;
+
+        //establecemos a cero la cantidad de carga del proceso
+        fileSize = 0;
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < 100) {
+                    // llamamos al método que simulará el proceso de carga
+                    progressStatus = simulacionCarga();
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    // actualizamos la barra de progreso
+                    progressBarHandler.post(new Runnable() {
+                        public void run() {
+                            progress.setProgress(progressStatus);
+                        }
+                    });
+                }
+                // cuando la barra de progeso llegue a su fin, cargamos el perfil
+                if (progressStatus >= 100) {
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    // cerramos el dialogo de progreso
+                    progress.dismiss();
+                }
+            }
+        }).start();
+        this.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    public int simulacionCarga() {
+
+        while (fileSize <= 1000000) {
+
+            fileSize++;
+
+            if (fileSize == 100000) {
+                return 10;
+            } else if (fileSize == 200000) {
+                return 20;
+            } else if (fileSize == 300000) {
+                return 30;
+            } else if (fileSize == 400000) {
+                return 40;
+            } else if (fileSize == 500000) {
+                return 50;
+            } else if (fileSize == 600000) {
+                return 60;
+            } else if (fileSize == 700000) {
+                return 70;
+            } else if (fileSize == 800000) {
+                return 80;
+            } else if (fileSize == 900000) {
+                return 90;
+            } else if (fileSize == 1000000) {
+                return 100;
+            }
+        }
+        return 100;
+    }
 
 }
