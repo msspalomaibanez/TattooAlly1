@@ -53,6 +53,7 @@ import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
 import com.example.prueba_tattooally.databinding.FragmentNuevoBinding;
 import com.example.prueba_tattooally.inicio.HomeFragment;
+import com.example.prueba_tattooally.inicio.MainActivity;
 import com.example.prueba_tattooally.utils;
 import com.google.android.material.navigation.NavigationView;
 
@@ -71,15 +72,17 @@ import java.util.Map;
 public class NuevoActivity extends Fragment {
 
     private FragmentNuevoBinding binding;
-    ActivityResultLauncher<Intent> miActivityResultLauncher;
-    Button anadirImagenBtn;
-    Bitmap imagen;
-    ImageView previewImagen;
-    EditText descripcionImagen;
-    Spinner localizacionNuevo;
-    Spinner estiloNuevo;
-    Button publicar;
-    View root;
+    private ActivityResultLauncher<Intent> miActivityResultLauncher;
+    private RequestQueue requestQueue;
+    private Button anadirImagenBtn;
+    private Bitmap imagen;
+    private ImageView previewImagen;
+    private EditText descripcionImagen;
+    private Spinner localizacionNuevo;
+    private Spinner estiloNuevo;
+    private Button publicar;
+    private View root;
+    private String URL;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -92,12 +95,13 @@ public class NuevoActivity extends Fragment {
         localizacionNuevo = root.findViewById(R.id.desplegableProvincias);
         estiloNuevo = root.findViewById(R.id.desplegableEstilos);
         publicar = root.findViewById(R.id.btnPublicar);
+        requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
+        URL = "http://"+MainActivity.getIp()+"/tattooally_php/crear_publicacion.php";
         publicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(imagen != null && !descripcionImagen.getText().toString().isEmpty() && !localizacionNuevo.getSelectedItem().equals("") && !estiloNuevo.getSelectedItem().equals("")){
-                    crearPublicacion("http://192.168.1.121/tattooally_php/crear_publicacion.php");
+                    crearPublicacion(URL);
                }else{
                     Toast.makeText(getContext(), "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
                 }

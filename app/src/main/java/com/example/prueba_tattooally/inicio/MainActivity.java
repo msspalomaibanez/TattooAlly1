@@ -41,13 +41,17 @@ import com.example.prueba_tattooally.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private static String ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //IP DEL SERVIDOR
+        ip = "192.168.1.138";
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -134,5 +138,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
+    public static String getIp() {
+        return ip;
+    }
 }

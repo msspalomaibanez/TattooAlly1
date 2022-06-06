@@ -97,7 +97,7 @@ public class PerfilActivity extends Fragment {
         gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                cargarPerfil("http://192.168.1.121/tattooally_php/mostrar_perfil.php");
+                cargarPerfil("http://"+MainActivity.getIp()+"/tattooally_php/mostrar_perfil.php");
             }
         });
 
@@ -110,7 +110,7 @@ public class PerfilActivity extends Fragment {
             }
         });
         if(perfil == null){
-            cargarPerfil("http://192.168.1.121/tattooally_php/mostrar_perfil.php");
+            cargarPerfil("http://"+MainActivity.getIp()+"/tattooally_php/mostrar_perfil.php");
         }else{
 
             publicacionesPerfil = HomeFragment.getPublicaciones();
@@ -157,9 +157,11 @@ public class PerfilActivity extends Fragment {
                     JSONObject objeto = arrayJSON.getJSONObject(0);
                     int idUsuario = objeto.getInt("idUsuario");
                     Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("imagen"));
+                    String email = objeto.getString("email");
+                    String nombre = objeto.getString("nombre");
                     int seguidores = objeto.getInt("seguidores");
                     String nickname = objeto.getString("nickname");
-                    perfil = new Usuario(idUsuario,imagenPerfil,nickname,seguidores,1);
+                    perfil = new Usuario(idUsuario,nombre,nickname,imagenPerfil,email,seguidores,1);
                     publicacionesPerfil = HomeFragment.getPublicaciones();
                     for(int x = 0; x < publicacionesPerfil.size();x++){
                         if(publicacionesPerfil.get(x).getIdUsuario() != 1){

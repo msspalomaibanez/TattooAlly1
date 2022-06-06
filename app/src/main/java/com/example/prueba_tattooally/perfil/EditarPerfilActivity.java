@@ -26,6 +26,7 @@ import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -33,6 +34,7 @@ import com.example.prueba_tattooally.Models.MiSingleton;
 import com.example.prueba_tattooally.Models.Usuario;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentEditarPerfilBinding;
+import com.example.prueba_tattooally.inicio.MainActivity;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -42,6 +44,7 @@ public class EditarPerfilActivity extends Fragment {
 
     private FragmentEditarPerfilBinding binding;
     ActivityResultLauncher<Intent> miActivityResultLauncher;
+    private RequestQueue requestQueue;
     private Usuario usuario;
     private EditText nombre;
     private EditText nickname;
@@ -49,16 +52,19 @@ public class EditarPerfilActivity extends Fragment {
     private ImageView img_preview;
     private Bitmap img;
     private Button btn_editar;
+    private String URL;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
         binding = FragmentEditarPerfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        URL = "http://"+ MainActivity.getIp()+"/tattooally_php/editar_perfil.php";
         usuario = PerfilActivity.perfil;
         nombre = root.findViewById(R.id.editar_nom_edittxt);
         nickname = root.findViewById(R.id.editar_nick_edittxt);
         email = root.findViewById(R.id.editar_email_edittxt);
         img_preview = root.findViewById(R.id.img_editar_perfil);
+        requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
         cargarDatos();
 
         miActivityResultLauncher = registerForActivityResult(
@@ -93,7 +99,7 @@ public class EditarPerfilActivity extends Fragment {
         btn_editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cambiarDatos("http://192.168.1.121/tattooally_php/editar_perfil.php");
+                cambiarDatos(URL);
             }
         });
 
@@ -110,12 +116,12 @@ public class EditarPerfilActivity extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                System.out.println("--------------------------------funciona");
+                Toast.makeText(getContext(),"Tu perfil se ha actualizado",Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(),"No ha funsionao", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"No se ha podido actualizar tu perfil", Toast.LENGTH_SHORT).show();
                 System.out.println(error.getMessage());
             }
         }) {

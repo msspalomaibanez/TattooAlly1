@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-                //validarUsuario("http://10.0.2.2/tattooally_php/validar_usuario.php");
+                //validarUsuario(""http://"+MainActivity.getHostname()+"/tattooally_php/validar_usuario.php");
                 //dialogoCarga();
             }
         });
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error){
                 Toast.makeText(LoginActivity.this, "Error, enviando datos del error...", Toast.LENGTH_SHORT).show();
-/*V.Desarrollo*/ System.out.println(error.toString());
+                 System.out.println(error.toString());
             }
             }){
             @Override

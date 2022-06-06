@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
     JsonArrayRequest jsonArrayRequest;
     RequestQueue requestQueue;
     SwipeRefreshLayout gestoActualizar;
+    String URL;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,12 +56,12 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        URL = "http://"+MainActivity.getIp()+"/tattooally_php/obtener_publicaciones.php";
+        System.out.println(URL);
         requestQueue = MiSingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue();
         if(publicaciones == null){
-            /*EMULADOR*/
-            //obtenerPublicaciones("http://10.0.2.2/tattooally_php/obtener_publicaciones.php");
-            /*DISPOSITIVOS MOVILES*/
-            obtenerPublicaciones("http://192.168.1.121/tattooally_php/obtener_publicaciones.php");
+
+            obtenerPublicaciones(URL);
 
         }else{
             mostrarPublicaciones(publicaciones);
@@ -70,10 +71,8 @@ public class HomeFragment extends Fragment {
         gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                /*EMULADOR*/
-                //obtenerPublicaciones("http://10.0.2.2/tattooally_php/obtener_publicaciones.php");
-                /*DISPOSITIVOS MOVILES*/
-                obtenerPublicaciones("http://192.168.1.138/tattooally_php/obtener_publicaciones.php");
+
+                obtenerPublicaciones(URL);
 
             }
         });
