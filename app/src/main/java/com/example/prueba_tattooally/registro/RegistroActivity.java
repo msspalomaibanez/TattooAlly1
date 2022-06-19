@@ -129,6 +129,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error){
                 Toast.makeText(RegistroActivity.this, "Error, enviando datos del error...", Toast.LENGTH_SHORT).show();
                 System.out.println(error.toString());
+                System.out.println(error.getMessage());
             }
         }){
             @Override

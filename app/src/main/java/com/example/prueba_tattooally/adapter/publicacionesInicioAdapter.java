@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.example.prueba_tattooally.Models.Publicacion;
 import com.example.prueba_tattooally.R;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -50,10 +53,14 @@ public class publicacionesInicioAdapter extends BaseAdapter {
 
 
         ImageView imageView = convertView.findViewById(R.id.fotoPerfilPublicacion);
-        imageView.setImageBitmap(publicaciones.get(position).getFotoPerfil());
+        Picasso.get()
+                .load(publicaciones.get(position).getFotoPerfil())
+                .into(imageView);
 
         imageView = convertView.findViewById(R.id.imagenPublicacion);
-        imageView.setImageBitmap(publicaciones.get(position).getFoto());
+        Picasso.get()
+                .load(publicaciones.get(position).getFoto())
+                .into(imageView);
 
         TextView texto = convertView.findViewById(R.id.localizacionPublicacion);
         texto.setText(publicaciones.get(position).getLocalizacion());

@@ -40,6 +40,9 @@ import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.databinding.FragmentEditarPerfilBinding;
 import com.example.prueba_tattooally.inicio.HomeFragment;
 import com.example.prueba_tattooally.login.SplashActivity;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -132,8 +135,6 @@ public class EditarPerfilActivity extends Fragment {
             @Override
             public void onResponse(String response) {
                 dialogoCarga(v);
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -165,8 +166,12 @@ public class EditarPerfilActivity extends Fragment {
     public void cargarDatos() {
         nombre.setText(usuario.getNombre());
         email.setText(usuario.getEmail());
-        img = usuario.getFotoPerfil();
-        img_preview.setImageBitmap(img);
+        Picasso.get()
+                .load(usuario.getFotoPerfil())
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .into(img_preview);
+
     }
 
     public void cargarPerfil(Fragment fragment) {

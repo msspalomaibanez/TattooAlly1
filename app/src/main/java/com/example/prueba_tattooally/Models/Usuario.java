@@ -9,7 +9,7 @@ public class Usuario {
     private int idUsuario;
     private String nombre;
     private String nickname;
-    private Bitmap fotoPerfil;
+    private String fotoPerfil;
     private String email;
     private int seguidores;
     private int siguiendo;
@@ -19,7 +19,7 @@ public class Usuario {
 
     }
 
-    public Usuario(int idUsuario, String nombre, String nickname, Bitmap fotoPerfil, String email, int seguidores, int siguiendo) {
+    public Usuario(int idUsuario, String nombre, String nickname, String fotoPerfil, String email, int seguidores, int siguiendo) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.nickname = nickname;
@@ -29,7 +29,7 @@ public class Usuario {
         this.siguiendo = siguiendo;
     }
 
-    public Usuario(int idUsuario, Bitmap fotoPerfil, String nickname, int seguidores, int siguiendo) {
+    public Usuario(int idUsuario, String fotoPerfil, String nickname, int seguidores, int siguiendo) {
         this.idUsuario = idUsuario;
         this.fotoPerfil = fotoPerfil;
         this.nickname = nickname;
@@ -77,11 +77,11 @@ public class Usuario {
         this.siguiendo = siguiendo;
     }
 
-    public Bitmap getFotoPerfil() {
+    public String getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(Bitmap fotoPerfil) {
+    public void setFotoPerfil(String fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 

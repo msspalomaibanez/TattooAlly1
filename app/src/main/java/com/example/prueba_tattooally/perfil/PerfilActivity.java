@@ -40,6 +40,9 @@ import com.example.prueba_tattooally.inicio.HomeFragment;
 import com.example.prueba_tattooally.inicio.MainActivity;
 import com.example.prueba_tattooally.utils;
 import com.facebook.imagepipeline.common.SourceUriType;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -155,7 +158,8 @@ public class PerfilActivity extends Fragment {
                 try {
                     JSONObject objeto = arrayJSON.getJSONObject(0);
                     int idUsuario = objeto.getInt("idUsuario");
-                    Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("imagen"));
+                    String imagenPerfilAux = objeto.getString("imagen");
+                    String imagenPerfil = imagenPerfilAux.replace("localhost",MainActivity.getIp());
                     String email = objeto.getString("email");
                     String nombre = objeto.getString("nombre");
                     int seguidores = objeto.getInt("seguidores");
@@ -222,7 +226,11 @@ public class PerfilActivity extends Fragment {
 
 
     public void mostrarPerfil(Usuario u){
-        imagen_perfil.setImageBitmap(u.getFotoPerfil());
+        Picasso.get()
+                .load(u.getFotoPerfil())
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .into(imagen_perfil);
         nickname_perfil.setText(u.getNickname());
         num_publis_txt.setText(String.valueOf(publicacionesPerfil.size()) + " \n publicaciones");
         num_seguidores_txt.setText(String.valueOf(u.getSeguidores()) + "\n seguidores");

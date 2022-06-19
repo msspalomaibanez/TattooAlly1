@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.prueba_tattooally.Models.Publicacion;
 import com.example.prueba_tattooally.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class publicacionesPerfilAdapter extends BaseAdapter {
         }
 
         ImageView imageView = convertView.findViewById(R.id.imagen_publicacion_perfil);
-        imageView.setImageBitmap(publicaciones.get(position).getFoto());
+        Picasso.get().load(publicaciones.get(position).getFoto()).into(imageView);
 
 
         return convertView;

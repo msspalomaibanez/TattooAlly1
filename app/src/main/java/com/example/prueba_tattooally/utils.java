@@ -212,8 +212,11 @@ public class utils {
                 JSONObject objeto = jsonArray.getJSONObject(x);
                 int id = objeto.getInt("id");
                 int idUsuario = objeto.getInt("idUsuario");
-                Bitmap imagen = utils.StringABitMap(objeto.getString("imagen"));
-                Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("fotoPerfil"));
+                String imagenAux = objeto.getString("imagen");
+                String imagen  = imagenAux.replace("localhost",MainActivity.getIp().toString());
+                String imagenPerfilAux = objeto.getString("fotoPerfil");
+                String imagenPerfil  = imagenPerfilAux.replace("localhost",MainActivity.getIp().toString());
+
                 String descripcion = objeto.getString("descripcion");
                 String nickname = objeto.getString("nickname");
                 String localizacion = objeto.getString("localizacion");
@@ -240,7 +243,7 @@ public class utils {
                 JSONObject objeto = jsonArray.getJSONObject(x);
                 int id = objeto.getInt("id");
 
-                Bitmap imagen = utils.StringABitMap(objeto.getString("imagen"));
+                String imagen = objeto.getString("imagen");
 
 
                 Publicacion nuevaPublicacion = new Publicacion();
@@ -290,7 +293,7 @@ public class utils {
         Usuario usuarioLogeado = new Usuario();
         try {
             int idUsuario = objeto.getInt("idUsuario");
-            Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("imagen"));
+            String imagenPerfil = objeto.getString("imagen");
             String email = objeto.getString("email");
             String nombre = objeto.getString("nombre");
             int seguidores = objeto.getInt("seguidores");

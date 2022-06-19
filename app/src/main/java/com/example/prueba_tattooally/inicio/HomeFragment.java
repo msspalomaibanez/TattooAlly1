@@ -30,6 +30,7 @@ import com.example.prueba_tattooally.adapter.publicacionesInicioAdapter;
 import com.example.prueba_tattooally.databinding.FragmentHomeBinding;
 import com.example.prueba_tattooally.login.SplashActivity;
 import com.example.prueba_tattooally.utils;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,7 +82,7 @@ public class HomeFragment extends Fragment {
         gestoActualizar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                Picasso.get().invalidate("");
                 obtenerPublicaciones(URL);
 
             }
@@ -191,7 +192,8 @@ public class HomeFragment extends Fragment {
         Usuario usuarioLogeado = new Usuario();
         try{
             int idUsuario = objeto.getInt("idUsuario");
-            Bitmap imagenPerfil = utils.StringABitMap(objeto.getString("imagen"));
+            String imagenPerfilAux = objeto.getString("imagen");
+            String imagenPerfil = imagenPerfilAux.replace("localhost",MainActivity.getIp().toString());
             String email = objeto.getString("email");
             String nombre = objeto.getString("nombre");
             int seguidores = objeto.getInt("seguidores");

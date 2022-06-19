@@ -8,8 +8,8 @@ public class Publicacion implements Serializable {
     private int idPublicacion;
     private int idUsuario;
     private String nickname;
-    private Bitmap foto;
-    private Bitmap fotoPerfil;
+    private String urlFoto;
+    private String urlFotoPerfil;
     private String descripcion;
     private String localizacion;
     private String estilo;
@@ -17,22 +17,22 @@ public class Publicacion implements Serializable {
     public Publicacion() {
     }
 
-    public Publicacion(int idPublicacion, int idUsuario, String nickname, Bitmap foto, Bitmap fotoPerfil, String descripcion, String localizacion, String estilo) {
+    public Publicacion(int idPublicacion, int idUsuario, String nickname, String urlFoto, String urlFotoPerfil, String descripcion, String localizacion, String estilo) {
         this.idPublicacion = idPublicacion;
         this.idUsuario = idUsuario;
         this.nickname = nickname;
-        this.foto = foto;
-        this.fotoPerfil = fotoPerfil;
+        this.urlFoto = urlFoto;
+        this.urlFotoPerfil = urlFotoPerfil;
         this.descripcion = descripcion;
         this.localizacion = localizacion;
         this.estilo = estilo;
     }
 
-    public Publicacion(int idPublicacion, int idUsuario, String nickname, Bitmap foto, String descripcion, String localizacion, String estilo) {
+    public Publicacion(int idPublicacion, int idUsuario, String nickname, String foto, String descripcion, String localizacion, String estilo) {
         this.idPublicacion = idPublicacion;
         this.idUsuario = idUsuario;
         this.nickname = nickname;
-        this.foto = foto;
+        this.urlFoto = foto;
         this.descripcion = descripcion;
         this.localizacion = localizacion;
         this.estilo = estilo;
@@ -46,12 +46,12 @@ public class Publicacion implements Serializable {
         this.idPublicacion = idPublicacion;
     }
 
-    public  Bitmap getFoto() {
-        return foto;
+    public String getFoto() {
+        return urlFoto;
     }
 
-    public void setFoto(Bitmap foto) {
-        this.foto = foto;
+    public void setFoto(String foto) {
+        this.urlFoto = foto;
     }
 
     public  String getDescripcion() {
@@ -94,18 +94,18 @@ public class Publicacion implements Serializable {
         this.nickname = nickname;
     }
 
-    public Bitmap getFotoPerfil() {
-        return fotoPerfil;
+    public String getFotoPerfil() {
+        return urlFotoPerfil;
     }
 
-    public void setFotoPerfil(Bitmap fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    public void setFotoPerfil(String urlFotoPerfil) {
+        this.urlFotoPerfil = urlFotoPerfil;
     }
     public Publicacion(Publicacion p){
         this.idUsuario = p.idUsuario;
-        this.fotoPerfil = p.fotoPerfil;
+        this.urlFotoPerfil = p.urlFotoPerfil;
         this.nickname = p.nickname;
-        this.foto = p.foto;
+        this.urlFoto = p.urlFoto;
         this.idPublicacion = p.idPublicacion;
         this.estilo = p.estilo;
         this.localizacion = p.localizacion;
@@ -117,7 +117,7 @@ public class Publicacion implements Serializable {
         return "Publicacion{" +
                 "idPublicacion=" + idPublicacion +
                 ", idUsuario=" + idUsuario +
-                ", foto=" + foto +
+                ", foto=" + urlFoto +
                 ", descripcion='" + descripcion + '\'' +
                 ", localizacion='" + localizacion + '\'' +
                 ", estilo='" + estilo + '\'' +
