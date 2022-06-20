@@ -84,8 +84,9 @@
 
             <ImageView
                 android:id="@+id/img_editar_perfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_height="350dp"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_add_24" />
 
             <Button

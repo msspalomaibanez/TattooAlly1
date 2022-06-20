@@ -48,7 +48,10 @@ public class publicacionesPerfilAdapter extends BaseAdapter {
         }
 
         ImageView imageView = convertView.findViewById(R.id.imagen_publicacion_perfil);
-        Picasso.get().load(publicaciones.get(position).getFoto()).into(imageView);
+        Picasso.get()
+                .load(publicaciones.get(position).getFoto())
+                .resize(125,150)
+                .into(imageView);
 
 
         return convertView;

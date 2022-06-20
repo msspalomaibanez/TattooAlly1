@@ -1,9 +1,11 @@
 package com.example.prueba_tattooally.explorar;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.GridView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import com.example.prueba_tattooally.Models.Publicacion;
 import com.example.prueba_tattooally.R;
 import com.example.prueba_tattooally.adapter.publicacionesInicioAdapter;
 import com.example.prueba_tattooally.databinding.FragmentBusquedaBinding;
+import com.example.prueba_tattooally.inicio.MainActivity;
 
 import java.util.ArrayList;
 
@@ -34,12 +37,12 @@ public class BusquedaActivity extends Fragment {
 
         binding = FragmentBusquedaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
         mostrarPublicaciones(ExplorarActivity.publicacionesFiltradas);
 
 
         return root;
     }
-
     public void mostrarPublicaciones(ArrayList<Publicacion> publicaciones){
         if(binding != null){
             View root = binding.getRoot();

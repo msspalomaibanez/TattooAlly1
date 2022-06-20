@@ -98,9 +98,9 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/gestoActualizarPerfil"
-        android:layout_width="match_parent"
-        android:layout_height="427dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="402dp"
+        android:layout_height="393dp"
+        android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -113,11 +113,10 @@
             android:id="@+id/grid_publis_perfil"
             android:layout_width="match_parent"
             android:layout_height="435dp"
-            android:layout_marginTop="10dp"
             android:numColumns="3"
             android:padding="20dp"
-            android:verticalSpacing="40dp"
-            android:scrollbars="none"/>
+            android:scrollbars="none"
+            android:verticalSpacing="20dp" />
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

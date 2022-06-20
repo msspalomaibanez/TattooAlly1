@@ -91,8 +91,7 @@ public class EditarPerfilActivity extends Fragment {
                                 img = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
                                 img_preview.setImageBitmap(img);
                                 img_preview.setVisibility(View.VISIBLE);
-                                img_preview.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-                                img_preview.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

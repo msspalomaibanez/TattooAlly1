@@ -134,8 +134,6 @@ public class NuevoActivity extends Fragment {
                                 imagen = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
                                 previewImagen.setImageBitmap(imagen);
                                 previewImagen.setVisibility(View.VISIBLE);
-                                previewImagen.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-                                previewImagen.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
                                 anadirImagenBtn.setText("-");
                                 anadirImagenBtn.setOnClickListener(eliminarImagen);
                             } catch (IOException e) {

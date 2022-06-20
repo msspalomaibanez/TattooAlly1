@@ -55,7 +55,7 @@
     <!--perfil-->
     <string name="publicaciones_txt">0 \n publicaciones</string>
     <string name="seguidores_txt">0 \n seguidores</string>
-    <string name="seguidos_txt">0 \n seguidos</string>
+    <string name="seguidos_txt">0 \n siguiendo</string>
     <string name="editar_perfil_btn">editar perfil</string>
     <!--editar perfil-->
     <string name="editar_txt">Editar perfil</string>
